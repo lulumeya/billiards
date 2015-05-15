@@ -1,16 +1,90 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:columnCount="3"
+    android:orientation="horizontal"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivityFragment">
+    android:paddingTop="@dimen/activity_vertical_margin">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="fill_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="4" />
 
-</RelativeLayout>
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="fill_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="5" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="fill_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="▼" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="fill_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:minHeight="80dp"
+        android:text="1" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="fill_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:minHeight="80dp"
+        android:text="2" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="fill_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:minHeight="80dp"
+        android:text="3" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:minHeight="80dp"
+        android:text="0" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="fill_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:minHeight="80dp"
+        android:text="←" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="fill_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:text="NEW GAME" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="fill_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:text="SAVE" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_gravity="fill_horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:text="DELETE" />
+
+</GridLayout>
