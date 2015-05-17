@@ -1,90 +1,169 @@
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:columnCount="3"
-    android:orientation="horizontal"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:stretchColumns="0,1,2">
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_gravity="fill_horizontal"
+    <TableRow>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_span="2"
+            android:padding="10dp"
+            tools:text="1st game" />
+
+        <TextView
+            android:id="@+id/date"
+            android:padding="10dp"
+            tools:text="2015.04.2" />
+    </TableRow>
+
+    <pointer.wbc.com.billiardspointer.view.PrefixTextView
+        android:id="@+id/history"
         android:layout_weight="1"
-        android:gravity="center"
-        android:minHeight="50dp"
-        android:text="4" />
+        android:background="#ffefefef"
+        android:padding="10dp"
+        android:singleLine="false"
+        android:textSize="25sp"
+        app:prefix="History\n"
+        tools:text="1 0 3 4 0 1 2 3 4 0 1 1 0 2 1 1 0 2 2 2 2 1" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_gravity="fill_horizontal"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:minHeight="50dp"
-        android:text="5" />
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_gravity="fill_horizontal"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:minHeight="50dp"
-        android:text="▼" />
+        <pointer.wbc.com.billiardspointer.view.PrefixTextView
+            android:id="@+id/inning"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:textSize="20sp"
+            app:prefix="inning\n"
+            app:prefixSize="10sp"
+            tools:text="19" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_gravity="fill_horizontal"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:minHeight="80dp"
-        android:text="1" />
+        <pointer.wbc.com.billiardspointer.view.PrefixTextView
+            android:id="@+id/point"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:textSize="20sp"
+            app:prefix="point\n"
+            app:prefixSize="10sp"
+            tools:text="38" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_gravity="fill_horizontal"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:minHeight="80dp"
-        android:text="2" />
+        <pointer.wbc.com.billiardspointer.view.PrefixTextView
+            android:id="@+id/recent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:textSize="20sp"
+            app:prefix="recent\n"
+            app:prefixSize="10sp"
+            tools:text="1" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_gravity="fill_horizontal"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:minHeight="80dp"
-        android:text="3" />
+        <pointer.wbc.com.billiardspointer.view.PrefixTextView
+            android:id="@+id/highrun"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:textSize="20sp"
+            app:prefix="highrun\n"
+            app:prefixSize="10sp"
+            tools:text="11" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_columnSpan="2"
-        android:layout_gravity="fill_horizontal"
-        android:layout_weight="0.5"
-        android:gravity="center"
-        android:minHeight="80dp"
-        android:text="0" />
+        <pointer.wbc.com.billiardspointer.view.PrefixTextView
+            android:id="@+id/average"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:textSize="20sp"
+            app:prefix="average\n"
+            app:prefixSize="10sp"
+            tools:text="2.000" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_gravity="fill_horizontal"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:minHeight="80dp"
-        android:text="←" />
+    </LinearLayout>
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_gravity="fill_horizontal"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:minHeight="40dp"
-        android:text="NEW GAME" />
+    <TableRow>
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_gravity="fill_horizontal"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:minHeight="40dp"
-        android:text="SAVE" />
+        <android.support.v7.widget.AppCompatButton
+            android:minHeight="55dp"
+            android:text="4"
+            android:textSize="30sp" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_gravity="fill_horizontal"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:minHeight="40dp"
-        android:text="DELETE" />
+        <android.support.v7.widget.AppCompatButton
+            android:minHeight="55dp"
+            android:text="5"
+            android:textSize="30sp" />
 
-</GridLayout>
+        <android.support.v7.widget.AppCompatButton
+            android:minHeight="55dp"
+            android:text="▼"
+            android:textSize="30sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <android.support.v7.widget.AppCompatButton
+            android:minHeight="85dp"
+            android:text="1"
+            android:textSize="30sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:minHeight="85dp"
+            android:text="2"
+            android:textSize="30sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:minHeight="85dp"
+            android:text="3"
+            android:textSize="30sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_span="2"
+            android:minHeight="85dp"
+            android:text="0"
+            android:textSize="30sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:minHeight="85dp"
+            android:text="←"
+            android:textSize="30sp" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_newgame"
+            android:minHeight="55dp"
+            android:text="NEW GAME"
+            android:textSize="13sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_save"
+            android:minHeight="55dp"
+            android:text="SAVE"
+            android:textSize="13sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_delete"
+            android:minHeight="55dp"
+            android:text="DELETE"
+            android:textSize="13sp" />
+    </TableRow>
+</TableLayout>
