@@ -248,7 +248,7 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                 byte[] bytes = new byte[game.history.size()];
                 int index = 0;
                 for (Byte aByte : game.history) {
-                    game.getScores()[index] = aByte;
+                    bytes[index] = aByte;
                     index++;
                 }
                 game.setScores(bytes);

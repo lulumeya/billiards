@@ -10,6 +10,10 @@ import io.realm.annotations.Ignore;
  * Created by Haksu on 2015-05-17.
  */
 public class Game extends RealmObject {
+    public List<Byte> getHistory() {
+        return history;
+    }
+
     @Ignore
     public final List<Byte> history = new ArrayList<>();
 
