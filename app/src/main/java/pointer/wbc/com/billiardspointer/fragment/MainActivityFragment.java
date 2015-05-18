@@ -264,6 +264,8 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                 saved.setPoint(game.getPoint());
                 saved.setHighrun(game.getHighrun());
                 realm.commitTransaction();
+                reset();
+                Util.toast("저장 되었습니다. 초기화 합니다.");
                 break;
 
             case R.id.btn_newgame:
