@@ -20,7 +20,7 @@ public class Game extends RealmObject {
     private byte[] scores;
     private long createTime;
     private long lastScoreTime;
-    private String name;
+    private String name = "";
     private int inning;
     private int point;
     private int highrun;
