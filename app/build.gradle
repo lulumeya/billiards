@@ -26,6 +26,22 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("key/debug.keystore")
+        }
+
+        release {
+            storeFile file("key/healingpaper.keystore")
+            keyAlias "healingpaper"
+            storePassword "healingpaper1"
+            keyPassword "healingpaper1"
+            // storePassword System.in.readLine("\nKeystore password: ")
+            // keyPassword System.in.readLine("\nKey password: ")
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
