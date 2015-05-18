@@ -53,8 +53,4 @@ dependencies {
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'net.kianoni:fontloader:0.3.0'
     compile 'com.jakewharton:butterknife:6.0.0'
-
-    compile('com.weiwangcn.betterspinner:library-material:1.1.0') {
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-    }
 }

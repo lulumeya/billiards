@@ -93,26 +93,26 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
         public void onClick(View v) {
             switch (v.getTag().toString()) {
                 case "0":
-                    game.scores.add(game.scores.size(), 0);
+                    game.history.add(game.history.size(), (byte) 0);
                     break;
                 case "1":
-                    game.scores.add(game.scores.size(), 1);
+                    game.history.add(game.history.size(), (byte) 1);
                     break;
                 case "2":
-                    game.scores.add(game.scores.size(), 2);
+                    game.history.add(game.history.size(), (byte) 2);
                     break;
                 case "3":
-                    game.scores.add(game.scores.size(), 3);
+                    game.history.add(game.history.size(), (byte) 3);
                     break;
                 case "4":
-                    game.scores.add(game.scores.size(), 4);
+                    game.history.add(game.history.size(), (byte) 4);
                     break;
                 case "5":
-                    game.scores.add(game.scores.size(), 5);
+                    game.history.add(game.history.size(), (byte) 5);
                     break;
                 case "←":
-                    if (game.scores.size() > 0) {
-                        game.scores.remove(game.scores.size() - 1);
+                    if (game.history.size() > 0) {
+                        game.history.remove(game.history.size() - 1);
                     }
                     break;
                 case "▼":
@@ -184,7 +184,7 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            game.scores.add(game.scores.size(), position + 5);
+            game.history.add(game.history.size(), (byte) (position + 5));
             applyHistory();
             hideGrid();
         }
@@ -196,7 +196,7 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
         builder.clear();
         int highrun = 0;
         int sum = 0;
-        for (Integer score : game.scores) {
+        for (Byte score : game.history) {
             highrun = highrun > score ? highrun : score;
             sum += score;
             String text = String.valueOf(score);
@@ -213,18 +213,25 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
         }
         this.history.setText(builder);
         this.highrun.setText(String.valueOf(highrun));
-        if (game.scores.size() > 0) {
-            this.average.setText(String.format("%.3f", (float) sum / (float) game.scores.size()));
+        game.setHighrun(highrun);
+        if (game.history.size() > 0) {
+            float average = (float) sum / (float) game.history.size();
+            this.average.setText(String.format("%.3f", average));
+            game.setAverage(average);
         } else {
             this.average.setText(String.format("%.3f", 0f));
+            game.setAverage(0f);
         }
-        this.inning.setText(String.valueOf(game.scores.size()));
-        if (game.scores.size() > 0) {
-            this.recent.setText(String.valueOf(game.scores.get(game.scores.size() - 1)));
+        this.inning.setText(String.valueOf(game.history.size()));
+        game.setInning(game.history.size());
+        if (game.history.size() > 0) {
+            this.recent.setText(String.valueOf(game.history.get(game.history.size() - 1)));
         } else {
             this.recent.setText("");
         }
         this.point.setText(String.valueOf(sum));
+        game.setPoint(sum);
+        game.setLastScoreTime(System.currentTimeMillis());
     }
 
     @Override
@@ -237,6 +244,13 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_save:
+                byte[] bytes = new byte[game.history.size()];
+                int index = 0;
+                for (Byte aByte : game.history) {
+                    game.getScores()[index] = aByte;
+                    index++;
+                }
+                game.setScores(bytes);
                 break;
 
             case R.id.btn_newgame:
