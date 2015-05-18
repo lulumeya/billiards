@@ -14,11 +14,6 @@ public class Game extends RealmObject {
     public final List<Byte> history = new ArrayList<>();
 
     private byte[] scores;
-
-    public void setCreateTime(long createTime) {
-        this.createTime = createTime;
-    }
-
     private long createTime;
     private long lastScoreTime;
     private String name;
@@ -29,6 +24,10 @@ public class Game extends RealmObject {
 
     public Game() {
         createTime = System.currentTimeMillis();
+    }
+
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
     }
 
     public byte[] getScores() {

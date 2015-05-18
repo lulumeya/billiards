@@ -21,6 +21,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
+import io.realm.Realm;
 import pointer.wbc.com.billiardspointer.R;
 import pointer.wbc.com.billiardspointer.model.Game;
 import pointer.wbc.com.billiardspointer.util.Util;
@@ -251,6 +252,18 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                     index++;
                 }
                 game.setScores(bytes);
+                Realm realm = Realm.getInstance(context);
+                realm.beginTransaction();
+                Game saved = realm.createObject(Game.class);
+                saved.setScores(game.getScores());
+                saved.setAverage(game.getAverage());
+                saved.setCreateTime(game.getCreateTime());
+                saved.setLastScoreTime(game.getLastScoreTime());
+                saved.setName(game.getName());
+                saved.setInning(game.getInning());
+                saved.setPoint(game.getPoint());
+                saved.setHighrun(game.getHighrun());
+                realm.commitTransaction();
                 break;
 
             case R.id.btn_newgame:
