@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.os.Handler;
 
+import com.kakao.AuthType;
 import com.kakao.Session;
 
 /**
@@ -20,7 +21,7 @@ public class App extends Application {
         super.onCreate();
         this.context = this;
         isDebuggable = (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
-        Session.initialize(this);
+        Session.initialize(this, AuthType.KAKAO_TALK);
     }
 
     @Override

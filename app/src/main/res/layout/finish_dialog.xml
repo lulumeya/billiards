@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <pointer.wbc.com.billiardspointer.view.FlatGameItemView
+        android:id="@+id/game_item_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <pointer.wbc.com.billiardspointer.view.PrefixEditTextView
+        android:id="@+id/history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/game_item_view"
+        android:lineSpacingExtra="1dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:singleLine="false"
+        android:textColor="#ff303030"
+        android:textSize="22sp"
+        app:prefix="History\n"
+        app:prefixColor="#ffb0b0b0"
+        tools:text="1 0 3 4 0 1 2 3 4 0 1 1 0 2 1 1 0 2 2 2 2 1" />
+
+    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+        android:id="@+id/result_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/history"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="승패를 선택하세요"
+        android:textColor="#303030"
+        android:textSize="14sp" />
+
+</LinearLayout>

@@ -45,6 +45,10 @@ public class IntroActivity extends BaseActivity {
             if (session.isOpenable()) {
                 session.implicitOpen();
             }
+
+            Intent intent = new Intent(context, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 

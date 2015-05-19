@@ -10,13 +10,8 @@ import io.realm.annotations.Ignore;
  * Created by Haksu on 2015-05-17.
  */
 public class Game extends RealmObject {
-    public List<Byte> getHistory() {
-        return history;
-    }
-
     @Ignore
     public final List<Byte> history = new ArrayList<>();
-
     private byte[] scores;
     private long createTime;
     private long lastScoreTime;
@@ -101,5 +96,9 @@ public class Game extends RealmObject {
 
     public void setWon(boolean won) {
         this.won = won;
+    }
+
+    public List<Byte> getHistory() {
+        return history;
     }
 }
