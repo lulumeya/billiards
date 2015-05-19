@@ -58,6 +58,9 @@ repositories {
     maven {
         url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
     }
+    maven {
+        url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/'
+    }
 }
 
 dependencies {
@@ -71,4 +74,11 @@ dependencies {
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'net.kianoni:fontloader:0.3.0'
     compile 'com.jakewharton:butterknife:6.0.0'
+
+    compile group: project.KAKAO_SDK_GROUP, name: 'kakaolink', version: project.KAKAO_SDK_VERSION
+    compile group: project.KAKAO_SDK_GROUP, name: 'kakaostory', version: project.KAKAO_SDK_VERSION
+    compile group: project.KAKAO_SDK_GROUP, name: 'kakaotalk', version: project.KAKAO_SDK_VERSION
+    compile group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
+    compile group: project.KAKAO_SDK_GROUP, name: 'util', version: project.KAKAO_SDK_VERSION
+    compile group: project.KAKAO_SDK_GROUP, name: 'push', version: project.KAKAO_SDK_VERSION
 }
