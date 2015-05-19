@@ -113,16 +113,16 @@
     <orderEntry type="library" exported="" name="fontloader-0.3.0" level="project" />
     <orderEntry type="library" exported="" name="jackson-annotations-2.3.0" level="project" />
     <orderEntry type="library" exported="" name="kakaolink-1.0.52" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-22.1.0" level="project" />
     <orderEntry type="library" exported="" name="retrofit-1.9.0" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-22.1.0" level="project" />
     <orderEntry type="library" exported="" name="push-1.0.52" level="project" />
     <orderEntry type="library" exported="" name="kakaostory-1.0.52" level="project" />
     <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
     <orderEntry type="library" exported="" name="slf4j-api-1.7.5" level="project" />
     <orderEntry type="library" exported="" name="play-services-4.2.42" level="project" />
     <orderEntry type="library" exported="" name="async-http-client-1.8.3" level="project" />
-    <orderEntry type="library" exported="" name="butterknife-6.0.0" level="project" />
     <orderEntry type="library" exported="" name="realm-android-0.80.3-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="butterknife-6.0.0" level="project" />
     <orderEntry type="library" exported="" name="netty-3.9.0.Final" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.1.0" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-22.1.0" level="project" />

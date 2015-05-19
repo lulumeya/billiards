@@ -2,4 +2,6 @@
     <string name="app_name">My에버리지</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_list">지난 게임 목록</string>
+
+    <string name="kakao_app_key">3884f23dca0a3330526a065da12a7c47</string>
 </resources>

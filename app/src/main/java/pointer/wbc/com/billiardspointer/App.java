@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.os.Handler;
 
+import com.kakao.Session;
+
 /**
  * Created by Haksu on 2015-05-17.
  */
@@ -18,6 +20,7 @@ public class App extends Application {
         super.onCreate();
         this.context = this;
         isDebuggable = (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
+        Session.initialize(this);
     }
 
     @Override
