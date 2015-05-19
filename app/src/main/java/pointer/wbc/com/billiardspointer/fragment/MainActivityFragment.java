@@ -245,32 +245,42 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_save:
-                byte[] bytes = new byte[game.history.size()];
-                int index = 0;
-                for (Byte aByte : game.history) {
-                    bytes[index] = aByte;
-                    index++;
-                }
-                game.setScores(bytes);
-                Realm realm = Realm.getInstance(context);
-                realm.beginTransaction();
-                Game saved = realm.createObject(Game.class);
-                saved.setScores(game.getScores());
-                saved.setAverage(game.getAverage());
-                saved.setCreateTime(game.getCreateTime());
-                saved.setLastScoreTime(game.getLastScoreTime());
-                saved.setName(game.getName());
-                saved.setInning(game.getInning());
-                saved.setPoint(game.getPoint());
-                saved.setHighrun(game.getHighrun());
-                realm.commitTransaction();
-                reset();
-                Util.toast("저장 되었습니다. 초기화 합니다.");
+                boolean won = false;
+                new AlertDialog.Builder(context).setMessage("승리하셨세여?").setPositiveButton("당근이지", (dialog1, which) -> {
+                    save(true);
+                }).setNegativeButton("약올리냐?", (dialog1, which) -> {
+                    save(false);
+                }).show();
                 break;
 
             case R.id.btn_newgame:
                 new AlertDialog.Builder(context).setMessage("정말로 초기화 할까요?\n저장안된 데이터는 삭제됩니다.").setPositiveButton("초기화", (dialog1, which) -> reset()).setNegativeButton("취소", null).show();
                 break;
         }
+    }
+
+    private void save(boolean won) {
+        byte[] bytes = new byte[game.history.size()];
+        int index = 0;
+        for (Byte aByte : game.history) {
+            bytes[index] = aByte;
+            index++;
+        }
+        game.setScores(bytes);
+        Realm realm = Realm.getInstance(context);
+        realm.beginTransaction();
+        Game saved = realm.createObject(Game.class);
+        saved.setWon(won);
+        saved.setScores(game.getScores());
+        saved.setAverage(game.getAverage());
+        saved.setCreateTime(game.getCreateTime());
+        saved.setLastScoreTime(game.getLastScoreTime());
+        saved.setName(game.getName());
+        saved.setInning(game.getInning());
+        saved.setPoint(game.getPoint());
+        saved.setHighrun(game.getHighrun());
+        realm.commitTransaction();
+        reset();
+        Util.toast("저장 되었습니다. 초기화 합니다.");
     }
 }

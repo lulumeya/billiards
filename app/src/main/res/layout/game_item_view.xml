@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:padding="10dp">
+
+    <pointer.wbc.com.billiardspointer.view.PrefixTextView
+        android:id="@+id/startTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="2dp"
+        android:textColor="#ff303030"
+        android:textSize="12sp"
+        app:prefix="시작시간\n"
+        app:prefixColor="#ffb0b0b0"
+        app:prefixSize="9sp"
+        tools:text="2015.5.19 오전 3:30" />
+
+    <pointer.wbc.com.billiardspointer.view.PrefixTextView
+        android:id="@+id/endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/startTime"
+        android:lineSpacingExtra="2dp"
+        android:textColor="#ff303030"
+        android:textSize="12sp"
+        app:prefix="종료시간\n"
+        app:prefixColor="#ffb0b0b0"
+        app:prefixSize="9sp"
+        tools:text="2015.5.19 오전 3:30" />
+
+    <pointer.wbc.com.billiardspointer.view.PrefixTextView
+        android:id="@+id/points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startTime"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="2dp"
+        android:textColor="#ff303030"
+        android:textSize="22sp"
+        app:prefix="총득점\n"
+        app:prefixColor="#ffb0b0b0"
+        app:prefixSize="9sp"
+        tools:text="40점" />
+
+    <pointer.wbc.com.billiardspointer.view.PrefixTextView
+        android:id="@+id/inning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startTime"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/points"
+        android:lineSpacingExtra="2dp"
+        android:textColor="#ff303030"
+        android:textSize="22sp"
+        app:prefix="이닝\n"
+        app:prefixColor="#ffb0b0b0"
+        app:prefixSize="9sp"
+        tools:text="30이닝" />
+
+    <pointer.wbc.com.billiardspointer.view.PrefixTextView
+        android:id="@+id/highrun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startTime"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/inning"
+        android:lineSpacingExtra="2dp"
+        android:textColor="#ff303030"
+        android:textSize="22sp"
+        app:prefix="하이런\n"
+        app:prefixColor="#ffb0b0b0"
+        app:prefixSize="9sp"
+        tools:text="8점" />
+
+    <pointer.wbc.com.billiardspointer.view.PrefixTextView
+        android:id="@+id/average"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startTime"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/highrun"
+        android:lineSpacingExtra="2dp"
+        android:textColor="#ff303030"
+        android:textSize="22sp"
+        app:prefix="에버리지\n"
+        app:prefixColor="#ffb0b0b0"
+        app:prefixSize="9sp"
+        tools:text="1.212" />
+
+    <TextView
+        android:id="@+id/won"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/points"
+        android:layout_marginTop="10dp"
+        android:text="WIN!"
+        android:textColor="#303030"
+        android:textSize="28sp" />
+
+</RelativeLayout>
