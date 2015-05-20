@@ -2,4 +2,21 @@
     <string name="app_name">나의 에버리지</string>
     <string name="action_list">지난 게임 목록</string>
 
+
+    <string name="win">승리</string>
+    <string name="defeat">패배</string>
+
+    <string name="action_save">저장</string>
+    <string name="action_cancel">취소</string>
+    <string name="action_share">공유</string>
+
+    <string name="start_time">시작시간</string>
+    <string name="end_time">종료시간</string>
+    <string name="average">에버리지</string>
+    <string name="total_point">총 득점</string>
+    <string name="point">점</string>
+    <string name="high_run">하이런</string>
+    <string name="result">승패</string>
+    <string name="point_per_inning">이닝별득점</string>
+
 </resources>

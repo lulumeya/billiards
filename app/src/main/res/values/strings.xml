@@ -4,4 +4,21 @@
     <string name="action_list">Game List</string>
 
     <string name="kakao_app_key">3884f23dca0a3330526a065da12a7c47</string>
+
+
+    <string name="win">Win</string>
+    <string name="defeat">Defeat</string>
+
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_share">Share</string>
+
+    <string name="start_time">Start</string>
+    <string name="end_time">End</string>
+    <string name="average">Avg.</string>
+    <string name="total_point">Total</string>
+    <string name="point">Pt.</string>
+    <string name="high_run">High Run</string>
+    <string name="result">Result</string>
+    <string name="point_per_inning">Pt/Inn</string>
 </resources>
