@@ -54,6 +54,10 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 repositories {
