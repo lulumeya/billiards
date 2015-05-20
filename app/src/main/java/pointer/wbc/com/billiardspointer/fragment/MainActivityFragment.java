@@ -268,7 +268,7 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                 gameItemView.setData(game);
                 resultSelect.setAdapter(new ArrayAdapter<>(context,
                         android.R.layout.simple_dropdown_item_1line,
-                        new String[]{"승리", "패배"}));
+                        new String[]{getString(R.string.win), getString(R.string.defeat)}));
                 resultSelect.setOnItemClickListener((adapterView, view1, position, l) -> {
                     switch (position) {
                         case 0:
@@ -279,8 +279,14 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                             break;
                     }
                 });
+
+                String[] menu = {
+                        getString(R.string.action_save),
+                        getString(R.string.action_cancel),
+                        getString(R.string.action_share),
+                };
                 new AlertDialog.Builder(context).setCustomTitle(v)
-                        .setItems(new String[]{"저장", "취소", "공유"}, (dialogInterface, i) -> {
+                        .setItems( menu, (dialogInterface, i) -> {
                             switch (i) {
                                 case 0:
                                     save(won);
@@ -304,7 +310,11 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                 break;
 
             case R.id.btn_newgame:
-                new AlertDialog.Builder(context).setMessage("정말로 초기화 할까요?\n저장안된 데이터는 삭제됩니다.").setPositiveButton("초기화", (dialog1, which) -> reset()).setNegativeButton("취소", null).show();
+                new AlertDialog.Builder(context)
+                        .setMessage(getString(R.string.init_question))
+                        .setPositiveButton(getString(R.string.init), (dialog1, which) -> reset())
+                        .setNegativeButton(getString(R.string.action_cancel), null)
+                        .show();
                 break;
         }
 
@@ -332,21 +342,36 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
         saved.setHighrun(game.getHighrun());
         realm.commitTransaction();
         reset();
-        Util.toast("저장 되었습니다. 초기화 합니다.");
+
+        Util.toast(getString(R.string.saved_n_reset));
     }
 
     public static final SimpleDateFormat FULL_DATE = new SimpleDateFormat("yyyy.M.d a HH:mm");
 
-    public static String gameToString(Game game) {
+    public String gameToString(Game game) {
         StringBuilder builder = new StringBuilder()
-                .append("시작시간  ").append(FULL_DATE.format(game.getCreateTime())).append("\n")
-                .append("종료시간  ").append(FULL_DATE.format((game.getLastScoreTime()))).append("\n")
-                .append("에버리지  ").append(String.format("%.3f", (game.getAverage()))).append("\n")
-                .append("총 득점  ").append((game.getPoint()) + "점").append("\n")
-                .append("하이런  ").append((game.getHighrun()) + "점").append("\n")
-                .append("승패  ").append((game.isWon()) ? "승리" : "패배").append("\n")
-                .append("이닝  ").append((game.getInning()) + "이닝").append("\n")
-                .append("이닝별득점  ");
+                .append(getString(R.string.start_time) + "  ")
+                .append(FULL_DATE.format(game.getCreateTime()))
+                .append("\n")
+                .append(getString(R.string.end_time) + "  ")
+                .append(FULL_DATE.format((game.getLastScoreTime())))
+                .append("\n")
+                .append(getString(R.string.average) + "  ")
+                .append(String.format("%.3f", (game.getAverage())))
+                .append("\n")
+                .append(getString(R.string.total_point) + "  ")
+                .append((game.getPoint()) + getString(R.string.point))
+                .append("\n")
+                .append(getString(R.string.high_run) + "  ")
+                .append((game.getHighrun()) + getString(R.string.point))
+                .append("\n")
+                .append(getString(R.string.result) + "  ")
+                .append((game.isWon()) ? getString(R.string.win) : getString(R.string.defeat))
+                .append("\n")
+                .append(getString(R.string.inning) + "  ")
+                .append((game.getInning()) + getString(R.string.inning)).append("\n")
+                .append(getString(R.string.point_per_inning) + "  ");
+
         for (Byte aByte : (game.getHistory())) {
             builder.append(String.valueOf(aByte));
         }

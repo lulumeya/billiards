@@ -20,5 +20,10 @@
     <string name="point">Pt.</string>
     <string name="high_run">High Run</string>
     <string name="result">Result</string>
+    <string name="inning">Inning</string>
     <string name="point_per_inning">Pt/Inn</string>
+
+    <string name="init">Initialize</string>
+    <string name="saved_n_reset">Saved and Reset</string>
+    <string name="init_question">Reset?\nNot saved data will be deleted.</string>
 </resources>

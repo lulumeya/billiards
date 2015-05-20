@@ -17,6 +17,11 @@
     <string name="point">점</string>
     <string name="high_run">하이런</string>
     <string name="result">승패</string>
+    <string name="inning">이닝</string>
     <string name="point_per_inning">이닝별득점</string>
+
+    <string name="init">초기화</string>
+    <string name="saved_n_reset">저장 되었습니다. 초기화 합니다.</string>
+    <string name="init_question">정말로 초기화 할까요?\n저장안된 데이터는 삭제됩니다.</string>
 
 </resources>
