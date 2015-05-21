@@ -61,11 +61,15 @@ android {
 }
 
 repositories {
+    jcenter()
     maven {
         url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
     }
     maven {
         url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/'
+    }
+    maven {
+        url "https://jitpack.io"
     }
 }
 
@@ -73,8 +77,8 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.1.0'
     compile 'com.android.support:support-v4:22.1.0'
-    compile 'com.android.support:recyclerview-v7:+'
-    compile 'com.android.support:cardview-v7:22.+'
+    compile 'com.android.support:recyclerview-v7:22.1.0'
+    compile 'com.android.support:cardview-v7:22.1.0'
 
     compile 'io.realm:realm-android:0.80.3-SNAPSHOT'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
@@ -82,7 +86,11 @@ dependencies {
     compile 'io.reactivex:rxandroid:0.24.0'
     compile 'net.kianoni:fontloader:0.3.0'
 
-    compile ('com.weiwangcn.betterspinner:library-material:1.1.0') {
+    compile('com.github.CodeFalling:RecyclerViewSwipeDismiss:v1.1.1') {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    }
+
+    compile('com.weiwangcn.betterspinner:library-material:1.1.0') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
 

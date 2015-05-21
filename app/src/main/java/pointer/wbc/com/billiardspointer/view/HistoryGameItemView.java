@@ -7,6 +7,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -57,6 +58,12 @@ public class HistoryGameItemView extends CardView {
 
     public void setData(Game data) {
         this.data = data;
+        if (data.isDeleteCandidate()) {
+            setVisibility(View.GONE);
+            return;
+        } else {
+            setVisibility(View.VISIBLE);
+        }
         processHistory(history, data);
         startTime.setText(FULL_DATE.format(new Date(data.getCreateTime())));
         endTime.setText(FULL_DATE.format(new Date(data.getLastScoreTime())));
@@ -68,18 +75,21 @@ public class HistoryGameItemView extends CardView {
     }
 
     private int processHistory(TextView history, Game game) {
-        byte[] bytes = new byte[game.history.size()];
-        int index1 = 0;
-        for (Byte aByte : game.history) {
-            bytes[index1] = aByte;
-            index1++;
-        }
-        game.setScores(bytes);
-
         builder.clear();
         int highrun = 0;
         int sum = 0;
-        for (Byte score : game.history) {
+        byte[] scores;
+        if (game.getScores() != null) {
+            scores = game.getScores();
+        } else {
+            scores = new byte[game.history.size()];
+            int index = 0;
+            for (Byte aByte : game.history) {
+                scores[index] = aByte;
+                index++;
+            }
+        }
+        for (Byte score : scores) {
             highrun = highrun > score ? highrun : score;
             sum += score;
             String text = String.valueOf(score);
@@ -96,7 +106,6 @@ public class HistoryGameItemView extends CardView {
         }
         history.setText(builder);
         this.highrun.setText(String.valueOf(highrun));
-        game.setHighrun(highrun);
         return sum;
     }
 

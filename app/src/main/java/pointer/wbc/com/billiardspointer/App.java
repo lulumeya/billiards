@@ -8,6 +8,11 @@ import android.os.Handler;
 import com.kakao.AuthType;
 import com.kakao.Session;
 
+import io.realm.Realm;
+import io.realm.exceptions.RealmMigrationNeededException;
+import pointer.wbc.com.billiardspointer.log.Logger;
+import pointer.wbc.com.billiardspointer.model.Migration;
+
 /**
  * Created by Haksu on 2015-05-17.
  */
@@ -22,6 +27,15 @@ public class App extends Application {
         this.context = this;
         isDebuggable = (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
         Session.initialize(this, AuthType.KAKAO_TALK);
+
+        // If you try to open a file that doesn't match your model an exception is thrown:
+        try {
+            // should throw as migration is required
+            Realm.getInstance(this);
+        } catch (RealmMigrationNeededException ex) {
+            Logger.i("realm migration execute");
+            Realm.migrateRealmAtPath(getFilesDir() + "/" + Realm.DEFAULT_REALM_NAME, new Migration());
+        }
     }
 
     @Override

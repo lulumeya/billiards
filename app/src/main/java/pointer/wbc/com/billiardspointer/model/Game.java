@@ -12,6 +12,8 @@ import io.realm.annotations.Ignore;
 public class Game extends RealmObject {
     @Ignore
     public final List<Byte> history = new ArrayList<>();
+
+    private boolean deleteCandidate;
     private byte[] scores;
     private long createTime;
     private long lastScoreTime;
@@ -100,5 +102,13 @@ public class Game extends RealmObject {
 
     public List<Byte> getHistory() {
         return history;
+    }
+
+    public boolean isDeleteCandidate() {
+        return deleteCandidate;
+    }
+
+    public void setDeleteCandidate(boolean deleteCandidate) {
+        this.deleteCandidate = deleteCandidate;
     }
 }
