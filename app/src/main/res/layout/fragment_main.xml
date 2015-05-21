@@ -189,9 +189,9 @@
             android:textSize="13sp" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_delete"
+            android:id="@+id/btn_share"
             android:minHeight="55dp"
-            android:text="DELETE"
+            android:text="SHARE"
             android:textSize="13sp" />
     </TableRow>
 </TableLayout>

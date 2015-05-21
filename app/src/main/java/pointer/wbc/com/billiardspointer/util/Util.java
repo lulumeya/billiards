@@ -13,6 +13,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.os.Environment;
 import android.os.Looper;
 import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.ShareCompat;
 import android.support.v4.view.ViewPager;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -39,6 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -51,6 +54,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import pointer.wbc.com.billiardspointer.App;
+import pointer.wbc.com.billiardspointer.BaseActivity;
 import pointer.wbc.com.billiardspointer.log.Logger;
 
 public class Util {
@@ -62,6 +66,30 @@ public class Util {
     private static final String ACCOUNT_PW = "ACCOUNT_PW";
 
     private static Toast toast;
+
+    public static void share(BaseActivity activity, View v) {
+        try {
+            ShareCompat.IntentBuilder builder = ShareCompat.IntentBuilder.from(activity);
+            v.setDrawingCacheEnabled(true);
+            v.buildDrawingCache(true);
+            Bitmap bitmap = v.getDrawingCache();
+            File f = new File(Environment.getExternalStorageDirectory(), "healingpaper_share.png");
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(f));
+            Uri uri = Uri.fromFile(f);
+            builder.setChooserTitle("공유할 어플 선택");
+            builder.setSubject("게임결과 공유");
+            builder.setText("게임결과 공유");
+            builder.setStream(uri);
+            builder.setType("image/png");
+            builder.startChooser();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void toast(String message) {
         if (App.getContext() != null) {

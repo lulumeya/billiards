@@ -28,10 +28,12 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
 import io.realm.Realm;
+import pointer.wbc.com.billiardspointer.BaseActivity;
 import pointer.wbc.com.billiardspointer.R;
 import pointer.wbc.com.billiardspointer.model.Game;
 import pointer.wbc.com.billiardspointer.util.Util;
 import pointer.wbc.com.billiardspointer.view.FlatGameItemView;
+import pointer.wbc.com.billiardspointer.view.GameItemView;
 import pointer.wbc.com.billiardspointer.view.PrefixEditTextView;
 import pointer.wbc.com.billiardspointer.view.PrefixTextView;
 
@@ -60,8 +62,8 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
     AppCompatButton btnNewgame;
     @InjectView(R.id.btn_save)
     AppCompatButton btnSave;
-    @InjectView(R.id.btn_delete)
-    AppCompatButton btnDelete;
+    @InjectView(R.id.btn_share)
+    AppCompatButton btnShare;
     @InjectViews({R.id.btn_point0, R.id.btn_point1, R.id.btn_point2, R.id.btn_point3, R.id.btn_point4, R.id.btn_point5, R.id.btn_point_back, R.id.btn_point_more})
     List<View> buttons;
     private static final String[] numbers = new String[30];
@@ -79,12 +81,11 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
 
         btnSave.setOnClickListener(this);
         btnNewgame.setOnClickListener(this);
+        btnShare.setOnClickListener(this);
 
         for (View button : buttons) {
             button.setOnClickListener(pointListener);
         }
-
-        btnDelete.setVisibility(View.GONE);
 
         reset();
 
@@ -286,7 +287,7 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                         getString(R.string.action_share),
                 };
                 new AlertDialog.Builder(context).setCustomTitle(v)
-                        .setItems( menu, (dialogInterface, i) -> {
+                        .setItems(menu, (dialogInterface, i) -> {
                             switch (i) {
                                 case 0:
                                     save(won);
@@ -313,6 +314,16 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                 new AlertDialog.Builder(context)
                         .setMessage(getString(R.string.init_question))
                         .setPositiveButton(getString(R.string.init), (dialog1, which) -> reset())
+                        .setNegativeButton(getString(R.string.action_cancel), null)
+                        .show();
+
+            case R.id.btn_share:
+                GameItemView itemView = new GameItemView(context);
+                itemView.setData(game);
+                new AlertDialog.Builder(context)
+                        .setCustomTitle(itemView)
+                        .setMessage("위의 내용으로 이미지를 공유합니다.")
+                        .setPositiveButton("공유하기", (dialog1, which) -> Util.share((BaseActivity) getActivity(), itemView))
                         .setNegativeButton(getString(R.string.action_cancel), null)
                         .show();
                 break;
