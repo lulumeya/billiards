@@ -66,6 +66,10 @@ public class GameListActivity extends BaseActivity implements SwipeRefreshLayout
                         realm.beginTransaction();
                         result.get(position).setDeleteCandidate(true);
                         realm.commitTransaction();
+
+                        RealmQuery<Game> query = realm.where(Game.class);
+                        ga = String.format("%.3f", query.equalTo("deleteCandidate", false).averageFloat("average"));
+
                         adapter.notifyDataSetChanged();
 
                         Toast toast = new Toast(context);
@@ -77,6 +81,9 @@ public class GameListActivity extends BaseActivity implements SwipeRefreshLayout
                                 result.get(position).setDeleteCandidate(false);
                                 realm.commitTransaction();
                                 adapter.notifyDataSetChanged();
+
+                                RealmQuery<Game> query = realm.where(Game.class);
+                                ga = String.format("%.3f", query.equalTo("deleteCandidate", false).averageFloat("average"));
                             }
                         });
                         toast.setView(v);
@@ -158,19 +165,31 @@ public class GameListActivity extends BaseActivity implements SwipeRefreshLayout
 
         public Holder(View itemView) {
             super(itemView);
-            this.view = (HistoryGameItemView) itemView;
+            if (itemView instanceof HistoryGameItemView) {
+                this.view = (HistoryGameItemView) itemView;
+            } else {
+                this.view = null;
+            }
         }
     }
 
     private class GameAdapter extends RecyclerView.Adapter<Holder> {
         @Override
         public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new Holder(new HistoryGameItemView(context));
+            if (viewType == 0) {
+                return new Holder(new View(context));
+            } else {
+                return new Holder(new HistoryGameItemView(context));
+            }
         }
 
         @Override
         public void onBindViewHolder(Holder holder, int position) {
-            holder.view.setData(result.get(position));
+            Game data = result.get(position);
+            if (data.isDeleteCandidate()) {
+            } else {
+                holder.view.setData(data);
+            }
         }
 
         @Override
@@ -179,6 +198,12 @@ public class GameListActivity extends BaseActivity implements SwipeRefreshLayout
                 return result.size();
             }
             return 0;
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            Game data = result.get(position);
+            return data.isDeleteCandidate() ? 0 : 1;
         }
     }
 }

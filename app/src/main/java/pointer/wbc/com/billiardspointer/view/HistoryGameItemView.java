@@ -7,7 +7,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -23,6 +23,9 @@ import pointer.wbc.com.billiardspointer.model.Game;
  */
 public class HistoryGameItemView extends CardView {
     public static final SimpleDateFormat FULL_DATE = new SimpleDateFormat("yyyy.M.d a HH:mm");
+    private static final ViewGroup.LayoutParams HIDE_PARAMS = new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, 0);
+    private static final ViewGroup.LayoutParams WRAP_PARAMS = new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+    ;
     @InjectView(R.id.startTime)
     PrefixTextView startTime;
     @InjectView(R.id.endTime)
@@ -58,12 +61,6 @@ public class HistoryGameItemView extends CardView {
 
     public void setData(Game data) {
         this.data = data;
-        if (data.isDeleteCandidate()) {
-            setVisibility(View.GONE);
-            return;
-        } else {
-            setVisibility(View.VISIBLE);
-        }
         processHistory(history, data);
         startTime.setText(FULL_DATE.format(new Date(data.getCreateTime())));
         endTime.setText(FULL_DATE.format(new Date(data.getLastScoreTime())));
