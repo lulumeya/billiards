@@ -34,6 +34,7 @@ import pointer.wbc.com.billiardspointer.model.Game;
 import pointer.wbc.com.billiardspointer.util.Util;
 import pointer.wbc.com.billiardspointer.view.FlatGameItemView;
 import pointer.wbc.com.billiardspointer.view.GameItemView;
+import pointer.wbc.com.billiardspointer.view.HistoryGameItemView;
 import pointer.wbc.com.billiardspointer.view.PrefixEditTextView;
 import pointer.wbc.com.billiardspointer.view.PrefixTextView;
 
@@ -318,7 +319,7 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                         .show();
 
             case R.id.btn_share:
-                GameItemView itemView = new GameItemView(context);
+                HistoryGameItemView itemView = new HistoryGameItemView(context);
                 itemView.setData(game);
                 new AlertDialog.Builder(context)
                         .setCustomTitle(itemView)
