@@ -1,8 +1,27 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/dark_bg_shape</item>
+        <item name="android:textViewStyle">@style/TextStyle</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/light_bg_shape</item>
+        <item name="android:textViewStyle">@style/TextStyle.Light</item>
+    </style>
+
+    <style name="TextStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textColorSecondary">#474747</item>
+        <item name="android:textColorPrimary">#333333</item>
+    </style>
+
+    <style name="TextStyle.Light" parent="@android:style/Widget.TextView">
+        <item name="android:textColorSecondary">#c1c1c1</item>
+        <item name="android:textColorPrimary">#ffffff</item>
     </style>
 
 </resources>

@@ -10,6 +10,7 @@ import android.view.ViewTreeObserver;
 
 import pointer.wbc.com.billiardspointer.listener.DataListener;
 import pointer.wbc.com.billiardspointer.log.Logger;
+import pointer.wbc.com.billiardspointer.preference.Pref;
 import pointer.wbc.com.billiardspointer.util.SoftKeyboardHelper;
 import pointer.wbc.com.billiardspointer.util.StringUtil;
 import pointer.wbc.com.billiardspointer.util.Util;
@@ -31,6 +32,14 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.context = this;
+        boolean isLight = Pref.getBoolean(Const.THEME, false);
+        if (isLight) {
+            setTheme(R.style.AppTheme_Light);
+            getWindow().setBackgroundDrawableResource(R.drawable.light_bg);
+        } else {
+            setTheme(R.style.AppTheme);
+            getWindow().setBackgroundDrawableResource(R.drawable.dark_bg);
+        }
         if (App.getContext() == null) {
             App.setContext(getApplicationContext());
         }

@@ -1,9 +1,11 @@
 package pointer.wbc.com.billiardspointer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import pointer.wbc.com.billiardspointer.preference.Pref;
 import pointer.wbc.com.billiardspointer.util.Navigator;
 
 
@@ -33,6 +35,12 @@ public class MainActivity extends BaseActivity {
         if (id == R.id.action_list) {
             Navigator.goGameList(context);
             return true;
+        } else if (id == R.id.action_theme) {
+            boolean isLight = !Pref.getBoolean(Const.THEME, false);
+            Pref.putBoolean(Const.THEME, isLight);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

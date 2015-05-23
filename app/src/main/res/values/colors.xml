@@ -8,6 +8,10 @@
     <color name="tiffany_red_alpha">#33fc4862</color>
     <color name="tiffany_violet">#5571DE</color>
     <color name="tiffany_yellow">#ffFDBA39</color>
+    <color name="dark_bg">#191919</color>
+    <color name="light_bg">#e5e5e5</color>
+    <drawable name="dark_bg">#191919</drawable>
+    <drawable name="light_bg">#e5e5e5</drawable>
     <drawable name="tiffany_green">#4cd6c7</drawable>
     <drawable name="tiffany_green_alpha">#334cd6c7</drawable>
     <drawable name="tiffany_green_dark">#6cf6e7</drawable>

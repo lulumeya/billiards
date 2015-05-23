@@ -11,7 +11,9 @@ import android.util.TypedValue;
 
 import net.kianoni.fontloader.TextView;
 
+import pointer.wbc.com.billiardspointer.Const;
 import pointer.wbc.com.billiardspointer.R;
+import pointer.wbc.com.billiardspointer.preference.Pref;
 
 /**
  * Created by Haksu on 2015-04-25.
@@ -33,7 +35,13 @@ public class PrefixTextView extends TextView {
         super(context, attrs, defStyleAttr);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PrefixTextView);
         prefix = a.getString(R.styleable.PrefixTextView_prefix);
-        prefixColor = a.getColor(R.styleable.PrefixTextView_prefixColor, 0xff303030);
+
+        boolean isLight = Pref.getBoolean(Const.THEME, false);
+        if (isLight) {
+            prefixColor = a.getColor(R.styleable.PrefixTextView_prefixColor, 0xffc1c1c1);
+        } else {
+            prefixColor = a.getColor(R.styleable.PrefixTextView_prefixColor, 0xff474747);
+        }
         prefixSize = Math.round(a.getDimension(R.styleable.PrefixTextView_prefixSize, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 13, context.getResources().getDisplayMetrics())));
         a.recycle();
 

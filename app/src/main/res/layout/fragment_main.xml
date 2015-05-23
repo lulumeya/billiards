@@ -22,7 +22,6 @@
     <pointer.wbc.com.billiardspointer.view.PrefixEditTextView
         android:id="@+id/history"
         android:layout_weight="1"
-        android:background="#ffefefef"
         android:lineSpacingExtra="3dp"
         android:padding="10dp"
         android:singleLine="false"

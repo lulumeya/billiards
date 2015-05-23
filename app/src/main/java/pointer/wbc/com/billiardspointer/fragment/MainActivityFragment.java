@@ -33,7 +33,6 @@ import pointer.wbc.com.billiardspointer.R;
 import pointer.wbc.com.billiardspointer.model.Game;
 import pointer.wbc.com.billiardspointer.util.Util;
 import pointer.wbc.com.billiardspointer.view.FlatGameItemView;
-import pointer.wbc.com.billiardspointer.view.GameItemView;
 import pointer.wbc.com.billiardspointer.view.HistoryGameItemView;
 import pointer.wbc.com.billiardspointer.view.PrefixEditTextView;
 import pointer.wbc.com.billiardspointer.view.PrefixTextView;
@@ -78,7 +77,6 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = String.valueOf(i + 5);
         }
-
 
         btnSave.setOnClickListener(this);
         btnNewgame.setOnClickListener(this);
