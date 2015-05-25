@@ -2,6 +2,9 @@ package pointer.wbc.com.billiardspointer.preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Parcelable;
+
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pointer.wbc.com.billiardspointer.App;
+import pointer.wbc.com.billiardspointer.util.StringUtil;
 
 /**
  * Created by Dalton on 2014. 9. 21..
@@ -43,6 +47,14 @@ public class Pref {
     public static void putString(String key, String value) {
         assertContext();
         pref.edit().putString(key, value).commit();
+    }
+
+    public static void putParcelable(String key, Parcelable data) {
+        assertContext();
+    }
+
+    public Parcelable getParcelable(String key) {
+        return null;
     }
 
     public static boolean getBoolean(String key, boolean defaultValue) {
@@ -95,5 +107,19 @@ public class Pref {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public static <E> void saveObject(String key, E obj) {
+        assertContext();
+        pref.edit().putString(key, new Gson().toJson(obj)).commit();
+    }
+
+    public static <E> E getObject(String key, Class<E> clazz) {
+        assertContext();
+        String string = pref.getString(key, null);
+        if (StringUtil.notEmpty(string)) {
+            return new Gson().fromJson(string, clazz);
+        }
+        return null;
     }
 }

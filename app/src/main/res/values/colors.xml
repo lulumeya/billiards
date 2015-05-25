@@ -15,4 +15,10 @@
     <drawable name="tiffany_green">#4cd6c7</drawable>
     <drawable name="tiffany_green_alpha">#334cd6c7</drawable>
     <drawable name="tiffany_green_dark">#6cf6e7</drawable>
+
+    <drawable name="window_bg_pressed">#7f808080</drawable>
+    <color name="window_bg_pressed">#7f808080</color>
+
+    <drawable name="transparent">#00000000</drawable>
+    <color name="transparent">#00000000</color>
 </resources>

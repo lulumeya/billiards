@@ -4,14 +4,32 @@
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/dark_bg_shape</item>
+        <item name="windowBgColor">@color/dark_bg</item>
         <item name="android:textViewStyle">@style/TextStyle</item>
+
+        <item name="back_button">@mipmap/btn_back</item>
+        <item name="close_button">@mipmap/btn_close</item>
+        <item name="list_button">@mipmap/btn_list</item>
+        <item name="more_button">@mipmap/btn_more</item>
+        <item name="share_button">@mipmap/btn_share</item>
+
+        <item name="menu_bg">#474747</item>
     </style>
 
     <!-- Base application theme. -->
     <style name="AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/light_bg_shape</item>
+        <item name="windowBgColor">@color/light_bg</item>
         <item name="android:textViewStyle">@style/TextStyle.Light</item>
+
+        <item name="back_button">@mipmap/w_btn_back</item>
+        <item name="close_button">@mipmap/w_btn_close</item>
+        <item name="list_button">@mipmap/w_btn_list</item>
+        <item name="more_button">@mipmap/w_btn_more</item>
+        <item name="share_button">@mipmap/w_btn_share</item>
+
+        <item name="menu_bg">#c1c1c1</item>
     </style>
 
     <style name="TextStyle" parent="@android:style/Widget.TextView">
@@ -23,5 +41,4 @@
         <item name="android:textColorSecondary">#c1c1c1</item>
         <item name="android:textColorPrimary">#ffffff</item>
     </style>
-
 </resources>

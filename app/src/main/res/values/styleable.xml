@@ -5,4 +5,13 @@
         <attr name="prefixColor" format="color" />
         <attr name="prefixSize" format="dimension" />
     </declare-styleable>
+
+    <attr name="back_button" format="reference" />
+    <attr name="close_button" format="reference" />
+    <attr name="list_button" format="reference" />
+    <attr name="more_button" format="reference" />
+    <attr name="share_button" format="reference" />
+
+    <attr name="menu_bg" format="color" />
+    <attr name="windowBgColor" format="color" />
 </resources>

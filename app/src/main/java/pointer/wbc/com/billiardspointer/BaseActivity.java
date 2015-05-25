@@ -32,7 +32,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.context = this;
-        boolean isLight = Pref.getBoolean(Const.THEME, false);
+        boolean isLight = Pref.getBoolean(Const.KEY_THEME, false);
         if (isLight) {
             setTheme(R.style.AppTheme_Light);
             getWindow().setBackgroundDrawableResource(R.drawable.light_bg);

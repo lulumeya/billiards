@@ -36,8 +36,8 @@ public class MainActivity extends BaseActivity {
             Navigator.goGameList(context);
             return true;
         } else if (id == R.id.action_theme) {
-            boolean isLight = !Pref.getBoolean(Const.THEME, false);
-            Pref.putBoolean(Const.THEME, isLight);
+            boolean isLight = !Pref.getBoolean(Const.KEY_THEME, false);
+            Pref.putBoolean(Const.KEY_THEME, isLight);
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();

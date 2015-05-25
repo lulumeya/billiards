@@ -36,7 +36,7 @@ public class PrefixTextView extends TextView {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PrefixTextView);
         prefix = a.getString(R.styleable.PrefixTextView_prefix);
 
-        boolean isLight = Pref.getBoolean(Const.THEME, false);
+        boolean isLight = Pref.getBoolean(Const.KEY_THEME, false);
         if (isLight) {
             prefixColor = a.getColor(R.styleable.PrefixTextView_prefixColor, 0xffc1c1c1);
         } else {

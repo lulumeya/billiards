@@ -2,22 +2,69 @@ package pointer.wbc.com.billiardspointer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+import com.kakao.APIErrorResult;
+import com.kakao.MeResponseCallback;
 import com.kakao.Session;
 import com.kakao.SessionCallback;
+import com.kakao.UserManagement;
+import com.kakao.UserProfile;
 import com.kakao.exception.KakaoException;
 import com.kakao.widget.LoginButton;
+import com.makeramen.roundedimageview.RoundedImageView;
+
+import net.kianoni.fontloader.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.realm.Realm;
+import pointer.wbc.com.billiardspointer.model.Game;
+import pointer.wbc.com.billiardspointer.preference.Pref;
+import pointer.wbc.com.billiardspointer.util.Util;
+import pointer.wbc.com.billiardspointer.view.pressable.DefaultImageView;
 
 /**
  * Created by Dalton on 15. 5. 19..
  */
-public class IntroActivity extends BaseActivity {
+public class IntroActivity extends BaseActivity implements View.OnClickListener {
     @InjectView(R.id.com_kakao_login)
     LoginButton loginButton;
+    @InjectView(R.id.menu)
+    DefaultImageView menu;
+    @InjectView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+    @InjectView(R.id.profile_image)
+    RoundedImageView profileImage;
+    @InjectView(R.id.nickname)
+    TextView nickname;
+    @InjectView(R.id.club)
+    TextView club;
+    @InjectView(R.id.btn_play_1p)
+    LinearLayout btnPlay1p;
+    @InjectView(R.id.btn_play_2p)
+    LinearLayout btnPlay2p;
+    @InjectView(R.id.average)
+    TextView average;
+    @InjectView(R.id.win_rate)
+    TextView winRate;
+    @InjectView(R.id.highrun)
+    TextView highrun;
+    @InjectView(R.id.total_games)
+    TextView totalGames;
+    @InjectView(R.id.total_wins)
+    TextView totalWins;
+    @InjectView(R.id.highrun_date)
+    TextView highrunDate;
+    @InjectView(R.id.btn_theme)
+    TextView btnTheme;
     private Session session;
 
     @Override
@@ -27,9 +74,55 @@ public class IntroActivity extends BaseActivity {
         setContentView(R.layout.activity_intro);
         ButterKnife.inject(this);
 
+        btnPlay1p.setOnClickListener(this);
+        btnPlay2p.setOnClickListener(this);
+        btnTheme.setOnClickListener(this);
+
+        menu.setOnClickListener((view) -> {
+            if (drawerLayout.isDrawerOpen(Gravity.START)) {
+                drawerLayout.closeDrawer(Gravity.START);
+            } else {
+                drawerLayout.openDrawer(Gravity.START);
+            }
+        });
+
         session = Session.getCurrentSession();
         session.addCallback(sessionCallback);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        applyUser();
+        applyGameStatistics();
+    }
+
+    private void applyGameStatistics() {
+        Realm realm = Realm.getInstance(context);
+        if (realm.where(Game.class).count() == 0) {
+            this.average.setText(getString(R.string.not_avail));
+            this.winRate.setText(getString(R.string.not_avail));
+            this.highrun.setText(getString(R.string.not_avail));
+            this.totalGames.setText("");
+            this.totalWins.setText("");
+            this.highrunDate.setText("");
+
+            return;
+        }
+        double average = realm.where(Game.class).equalTo("deleteCandidate", false).averageFloat("average");
+        long winCount = realm.where(Game.class).equalTo("deleteCandidate", false).equalTo("won", true).count();
+        long totalCount = realm.where(Game.class).equalTo("deleteCandidate", false).count();
+        Game highrunGame = realm.where(Game.class).equalTo("deleteCandidate", false).findAllSorted("highrun", false).get(0);
+
+        this.average.setText(String.format("%.3f", average));
+        this.winRate.setText(String.format("%d%%", winCount / totalCount * 100));
+        this.highrun.setText(String.valueOf(highrunGame.getHighrun()));
+        this.totalGames.setText(String.format("%d games", totalCount));
+        this.totalWins.setText(String.format("%d games", winCount));
+        this.highrunDate.setText(DATE_SIMPLE.format(new Date(highrunGame.getCreateTime())));
+    }
+
+    private static final SimpleDateFormat DATE_SIMPLE = new SimpleDateFormat("yyyy.MM.dd");
 
     @Override
     protected void onResume() {
@@ -46,11 +139,49 @@ public class IntroActivity extends BaseActivity {
             if (session.isOpenable()) {
                 session.implicitOpen();
             }
-
-            Intent intent = new Intent(context, MainActivity.class);
-            startActivity(intent);
-            finish();
+            getUserInfo();
         }
+    }
+
+    private void getUserInfo() {
+        UserManagement.requestMe(new MeResponseCallback() {
+            @Override
+            protected void onSuccess(final UserProfile userProfile) {
+                // 성공.
+                dismissProgress();
+                App.setUser(userProfile);
+                Pref.saveObject(Const.KEY_PROFILE, userProfile);
+                applyUser();
+            }
+
+            @Override
+            protected void onNotSignedUp() {
+                // 가입 페이지로 이동
+            }
+
+            @Override
+            protected void onSessionClosedFailure(final APIErrorResult errorResult) {
+                // 다시 로그인 시도
+            }
+
+            @Override
+            protected void onFailure(final APIErrorResult errorResult) {
+                // 실패
+            }
+        });
+    }
+
+    private void applyUser() {
+        UserProfile user = App.getUser();
+        if (user != null) {
+            Glide.with(context).load(user.getProfileImagePath()).into(profileImage);
+            nickname.setText(user.getNickname());
+        }
+    }
+
+    private void goGameScreen() {
+        Intent intent = new Intent(context, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -58,7 +189,6 @@ public class IntroActivity extends BaseActivity {
         if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
             return;
         }
-
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -69,9 +199,7 @@ public class IntroActivity extends BaseActivity {
             dismissProgress();
 
             // 세션 오픈후 보일 페이지로 이동
-            final Intent intent = new Intent(context, MainActivity.class);
-            startActivity(intent);
-            finish();
+            getUserInfo();
         }
 
         @Override
@@ -95,5 +223,26 @@ public class IntroActivity extends BaseActivity {
         super.onDestroy();
         ButterKnife.reset(this);
         session.removeCallback(sessionCallback);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_play_1p:
+                goGameScreen();
+                break;
+
+            case R.id.btn_play_2p:
+                Util.toast("준비중입니다.");
+                break;
+
+            case R.id.btn_theme:
+                boolean isLight = !Pref.getBoolean(Const.KEY_THEME, false);
+                Pref.putBoolean(Const.KEY_THEME, isLight);
+                Intent intent = new Intent(this, this.getClass());
+                startActivity(intent);
+                finish();
+                break;
+        }
     }
 }
