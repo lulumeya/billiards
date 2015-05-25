@@ -14,7 +14,8 @@
         <item name="more_button">@mipmap/btn_more</item>
         <item name="share_button">@mipmap/btn_share</item>
 
-        <item name="menu_bg">#474747</item>
+        <item name="secondary_color">#474747</item>
+        <item name="primary_color">#ffffff</item>
     </style>
 
     <!-- Base application theme. -->
@@ -31,16 +32,17 @@
         <item name="more_button">@mipmap/w_btn_more</item>
         <item name="share_button">@mipmap/w_btn_share</item>
 
-        <item name="menu_bg">#c1c1c1</item>
+        <item name="primary_color">#333333</item>
+        <item name="secondary_color">#c1c1c1</item>
     </style>
 
     <style name="TextStyle" parent="@android:style/Widget.TextView">
         <item name="android:textColorSecondary">#474747</item>
-        <item name="android:textColorPrimary">#333333</item>
+        <item name="android:textColorPrimary">#ffffff</item>
     </style>
 
     <style name="TextStyle.Light" parent="@android:style/Widget.TextView">
         <item name="android:textColorSecondary">#c1c1c1</item>
-        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:textColorPrimary">#333333</item>
     </style>
 </resources>

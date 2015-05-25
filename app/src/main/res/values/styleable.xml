@@ -12,7 +12,8 @@
     <attr name="more_button" format="reference" />
     <attr name="share_button" format="reference" />
 
-    <attr name="menu_bg" format="color" />
+    <attr name="secondary_color" format="color" />
+    <attr name="primary_color" format="color" />
     <attr name="windowBgColor" format="color" />
     <attr name="dividerColor" format="color" />
 </resources>

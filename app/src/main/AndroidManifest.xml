@@ -27,6 +27,9 @@
         <activity
             android:name=".GameListActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".GameResultActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

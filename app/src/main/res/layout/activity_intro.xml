@@ -38,7 +38,7 @@
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:text="N/A"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="24sp"
             app:fontFile="@string/roboto_regular"
             tools:text="Vin.j" />
@@ -52,7 +52,7 @@
             android:gravity="top|center_horizontal"
             android:paddingTop="5dp"
             android:text="(no club)"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="13sp"
             app:fontFile="@string/roboto_regular" />
 
@@ -73,21 +73,21 @@
                 <net.kianoni.fontloader.TextView
                     android:gravity="center"
                     android:text="AVERAGE"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="13sp"
                     app:fontFile="@string/roboto_medium" />
 
                 <net.kianoni.fontloader.TextView
                     android:gravity="center"
                     android:text="WIN RATE"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="13sp"
                     app:fontFile="@string/roboto_medium" />
 
                 <net.kianoni.fontloader.TextView
                     android:gravity="center"
                     android:text="HIGHRUN"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="13sp"
                     app:fontFile="@string/roboto_medium" />
             </TableRow>
@@ -99,7 +99,7 @@
                 <net.kianoni.fontloader.TextView
                     android:id="@+id/average"
                     android:gravity="center"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="32sp"
                     app:fontFile="@string/roboto_medium"
                     tools:text="0.723" />
@@ -107,7 +107,7 @@
                 <net.kianoni.fontloader.TextView
                     android:id="@+id/win_rate"
                     android:gravity="center"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="32sp"
                     app:fontFile="@string/roboto_medium"
                     tools:text="55%" />
@@ -115,7 +115,7 @@
                 <net.kianoni.fontloader.TextView
                     android:id="@+id/highrun"
                     android:gravity="center"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="32sp"
                     app:fontFile="@string/roboto_medium"
                     tools:text="9" />
@@ -128,7 +128,7 @@
                 <net.kianoni.fontloader.TextView
                     android:id="@+id/total_games"
                     android:gravity="center"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="12sp"
                     app:fontFile="@string/roboto_medium"
                     tools:text="48 games" />
@@ -136,7 +136,7 @@
                 <net.kianoni.fontloader.TextView
                     android:id="@+id/total_wins"
                     android:gravity="center"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="12sp"
                     app:fontFile="@string/roboto_medium"
                     tools:text="22 wins" />
@@ -144,7 +144,7 @@
                 <net.kianoni.fontloader.TextView
                     android:id="@+id/highrun_date"
                     android:gravity="center"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="12sp"
                     app:fontFile="@string/roboto_medium"
                     tools:text="2012.05.23" />
@@ -175,7 +175,7 @@
                     android:gravity="center"
                     android:paddingTop="30dp"
                     android:text="1P"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="34sp"
                     app:fontFile="@string/roboto_bold" />
 
@@ -185,7 +185,7 @@
                     android:gravity="center"
                     android:paddingBottom="25dp"
                     android:text="S T A R T"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="12sp"
                     app:fontFile="@string/roboto_bold" />
 
@@ -205,7 +205,7 @@
                     android:gravity="center"
                     android:paddingTop="30dp"
                     android:text="2P"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="34sp"
                     app:fontFile="@string/roboto_bold" />
 
@@ -215,7 +215,7 @@
                     android:gravity="center"
                     android:paddingBottom="25dp"
                     android:text="S T A R T"
-                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColor="?attr/primary_color"
                     android:textSize="12sp"
                     app:fontFile="@string/roboto_bold" />
 
@@ -229,7 +229,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="?attr/menu_bg"
+        android:background="?attr/secondary_color"
         android:minWidth="160dp"
         android:orientation="vertical"
         android:padding="20dp">
@@ -241,7 +241,18 @@
             android:background="@drawable/ripple_menu"
             android:padding="10dp"
             android:text="테마 변경"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
+            android:textSize="15sp"
+            app:fontFile="@string/roboto_bold" />
+
+        <net.kianoni.fontloader.TextView
+            android:id="@+id/go_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple_menu"
+            android:padding="10dp"
+            android:text="게임 목록"
+            android:textColor="?attr/primary_color"
             android:textSize="15sp"
             app:fontFile="@string/roboto_bold" />
 

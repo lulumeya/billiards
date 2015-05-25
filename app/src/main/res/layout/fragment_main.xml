@@ -23,7 +23,7 @@
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
             android:text="EXIT"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="13sp"
             app:fontFile="@string/roboto_regular" />
 
@@ -38,7 +38,7 @@
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
             android:text="RESET"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="13sp" />
 
         <net.kianoni.fontloader.TextView
@@ -52,7 +52,7 @@
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
             android:text="FINISH"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="13sp" />
     </LinearLayout>
 
@@ -67,15 +67,16 @@
         android:id="@+id/history"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="left"
+        android:layout_marginLeft="15dp"
         android:layout_weight="1"
         android:background="?android:attr/windowBackground"
-        android:gravity="top|center_horizontal"
+        android:gravity="top|left"
         android:lineSpacingExtra="3dp"
         android:paddingBottom="10dp"
         android:paddingTop="25dp"
         android:singleLine="false"
-        android:textColor="?android:attr/textColorPrimary"
+        android:textColor="?attr/primary_color"
         android:textSize="27sp"
         tools:text="01002 00110 10040 00001" />
 
@@ -99,15 +100,15 @@
             android:id="@+id/inning"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="5dp"
             android:maxLines="2"
             android:padding="5dp"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="32sp"
             app:prefix="inning\n"
-            app:prefixColor="?android:attr/textColorPrimary"
+            app:prefixColor="?attr/primary_color"
             app:prefixSize="10sp"
             tools:text="19" />
 
@@ -115,15 +116,15 @@
             android:id="@+id/point"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="5dp"
             android:maxLines="2"
             android:padding="5dp"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="32sp"
             app:prefix="point\n"
-            app:prefixColor="?android:attr/textColorPrimary"
+            app:prefixColor="?attr/primary_color"
             app:prefixSize="10sp"
             tools:text="38" />
 
@@ -131,15 +132,15 @@
             android:id="@+id/average"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="5dp"
             android:maxLines="2"
             android:padding="5dp"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="32sp"
             app:prefix="average\n"
-            app:prefixColor="?android:attr/textColorPrimary"
+            app:prefixColor="?attr/primary_color"
             app:prefixSize="10sp"
             tools:text="2.000" />
 
@@ -171,7 +172,7 @@
             android:minHeight="85dp"
             android:tag="5"
             android:text="5"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="30sp" />
 
         <ImageView
@@ -184,7 +185,7 @@
             android:scaleType="centerInside"
             android:src="?attr/more_button"
             android:tag="▼"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="30sp" />
 
         <ImageView
@@ -212,20 +213,21 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:background="?attr/dividerColor"
         android:orientation="horizontal">
 
         <net.kianoni.fontloader.TextView
             android:id="@+id/btn_point2"
             android:layout_width="0dp"
             android:layout_height="85dp"
+            android:layout_marginRight="1px"
             android:layout_weight="1"
             android:background="@drawable/ripple_window_bg"
-            android:drawableRight="@drawable/vertical_divider_85"
             android:gravity="center"
             android:minHeight="85dp"
             android:tag="2"
             android:text="2"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="30sp" />
 
         <net.kianoni.fontloader.TextView
@@ -238,21 +240,21 @@
             android:minHeight="85dp"
             android:tag="3"
             android:text="3"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="30sp" />
 
         <net.kianoni.fontloader.TextView
             android:id="@+id/btn_point4"
             android:layout_width="0dp"
             android:layout_height="85dp"
+            android:layout_marginLeft="1px"
             android:layout_weight="1"
             android:background="@drawable/ripple_window_bg"
-            android:drawableLeft="@drawable/vertical_divider_85"
             android:gravity="center"
             android:minHeight="85dp"
             android:tag="4"
             android:text="4"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -269,21 +271,22 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:background="?attr/dividerColor"
         android:orientation="horizontal">
 
         <net.kianoni.fontloader.TextView
             android:id="@+id/btn_point0"
             android:layout_width="0dp"
             android:layout_height="85dp"
+            android:layout_marginRight="1px"
             android:layout_span="2"
             android:layout_weight="1"
             android:background="@drawable/ripple_window_bg"
-            android:drawableRight="@drawable/vertical_divider_95"
             android:gravity="center"
             android:minHeight="85dp"
             android:tag="0"
             android:text="0"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="30sp" />
 
         <net.kianoni.fontloader.TextView
@@ -296,7 +299,7 @@
             android:minHeight="85dp"
             android:tag="1"
             android:text="1"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?attr/primary_color"
             android:textSize="30sp" />
 
     </LinearLayout>

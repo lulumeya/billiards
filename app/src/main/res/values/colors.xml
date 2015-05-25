@@ -3,7 +3,8 @@
     <color name="tiffany_green">#4cd6c7</color>
     <color name="tiffany_green_alpha">#334cd6c7</color>
     <color name="tiffany_green_dark">#6cf6e7</color>
-    <color name="tiffany_red">#fffc4862</color>
+    <color name="tiffany_red">#ffff0000</color>
+    <color name="tiffany_blue">#ff0000ff</color>
     <drawable name="tiffany_red">#fffc4862</drawable>
     <color name="tiffany_red_alpha">#33fc4862</color>
     <color name="tiffany_violet">#5571DE</color>

@@ -28,6 +28,7 @@ import butterknife.InjectView;
 import io.realm.Realm;
 import pointer.wbc.com.billiardspointer.model.Game;
 import pointer.wbc.com.billiardspointer.preference.Pref;
+import pointer.wbc.com.billiardspointer.util.Navigator;
 import pointer.wbc.com.billiardspointer.util.Util;
 import pointer.wbc.com.billiardspointer.view.pressable.DefaultImageView;
 
@@ -65,6 +66,8 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
     TextView highrunDate;
     @InjectView(R.id.btn_theme)
     TextView btnTheme;
+    @InjectView(R.id.go_list)
+    TextView goList;
     private Session session;
 
     @Override
@@ -77,6 +80,7 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
         btnPlay1p.setOnClickListener(this);
         btnPlay2p.setOnClickListener(this);
         btnTheme.setOnClickListener(this);
+        goList.setOnClickListener(this);
 
         menu.setOnClickListener((view) -> {
             if (drawerLayout.isDrawerOpen(Gravity.START)) {
@@ -237,11 +241,15 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
                 break;
 
             case R.id.btn_theme:
-                boolean isLight = !Pref.getBoolean(Const.KEY_THEME, false);
-                Pref.putBoolean(Const.KEY_THEME, isLight);
+                boolean changedValue = !Pref.getBoolean(Const.KEY_THEME, false);
+                Pref.putBoolean(Const.KEY_THEME, changedValue);
                 Intent intent = new Intent(this, this.getClass());
                 startActivity(intent);
                 finish();
+                break;
+
+            case R.id.go_list:
+                Navigator.goGameList(context);
                 break;
         }
     }

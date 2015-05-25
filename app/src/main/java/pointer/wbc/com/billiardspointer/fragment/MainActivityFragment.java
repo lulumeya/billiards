@@ -6,19 +6,15 @@ import android.support.v7.app.AlertDialog;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
-
-import com.kakao.KakaoLink;
-import com.kakao.KakaoParameterException;
-import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -26,12 +22,11 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
-import io.realm.Realm;
 import pointer.wbc.com.billiardspointer.R;
+import pointer.wbc.com.billiardspointer.log.Logger;
 import pointer.wbc.com.billiardspointer.model.Game;
+import pointer.wbc.com.billiardspointer.util.Navigator;
 import pointer.wbc.com.billiardspointer.util.Util;
-import pointer.wbc.com.billiardspointer.view.FlatGameItemView;
-import pointer.wbc.com.billiardspointer.view.PrefixEditTextView;
 import pointer.wbc.com.billiardspointer.view.PrefixTextView;
 
 
@@ -146,6 +141,10 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
         }
     }
 
+    public void onBackPressed() {
+        onClick(btnExit);
+    }
+
     class GridAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
 
         private final int size;
@@ -190,7 +189,7 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
     private final SpannableStringBuilder builder = new SpannableStringBuilder();
 
     private void applyHistory() {
-        int sum = processHistory(this.history);
+        int sum = processHistory(this.history, 20);
         if (game.history.size() > 0) {
             float average = (float) sum / (float) game.history.size();
             this.average.setText(String.format("%.3f", average));
@@ -211,24 +210,32 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
         game.setLastScoreTime(System.currentTimeMillis());
     }
 
-    private int processHistory(TextView history) {
+    private int processHistory(TextView history, int itemsPerLine) {
         builder.clear();
         int highrun = 0;
         int sum = 0;
+        int index = 0;
+        int builderLength = 0;
         for (Byte score : game.history) {
             highrun = highrun > score ? highrun : score;
             sum += score;
             String text = String.valueOf(score);
-            int index = builder.length();
-            int size = index + text.length();
-            builder.append(text).append(" ");
-            if (score > 9) {
-                builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.tiffany_red)), index, size, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            } else if (score > 4) {
-                builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.tiffany_yellow)), index, size, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            } else if (score > 2) {
-                builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.tiffany_green)), index, size, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            boolean isSplit = index % itemsPerLine == 0;
+            if (index != 0 && isSplit) {
+                builder.append("\n");
             }
+            if (index % 5 == 0 && !isSplit) {
+                builder.append(" ");
+            }
+            builderLength = builder.length();
+            builder.append(text);
+            if (text.length() > 1) {
+                builder.setSpan(new RelativeSizeSpan(0.5f), builderLength, builderLength + text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            if (score > 2) {
+                builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.tiffany_red)), builderLength, builderLength + text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            index++;
         }
         history.setText(builder);
         game.setHighrun(highrun);
@@ -241,60 +248,71 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
         ButterKnife.reset(this);
     }
 
-    boolean won = false;
+    int winSelectedIndex = 0;
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_save:
-                final View v = LayoutInflater.from(context).inflate(R.layout.finish_dialog, null);
-                FlatGameItemView gameItemView = (FlatGameItemView) v.findViewById(R.id.game_item_view);
-                gameItemView.getWon().setVisibility(View.GONE);
-                PrefixEditTextView history = (PrefixEditTextView) v.findViewById(R.id.history);
-                processHistory(history);
-                MaterialBetterSpinner resultSelect = (MaterialBetterSpinner) v.findViewById(R.id.result_select);
-                gameItemView.setData(game);
-                resultSelect.setAdapter(new ArrayAdapter<>(context,
-                        android.R.layout.simple_dropdown_item_1line,
-                        new String[]{getString(R.string.win), getString(R.string.defeat)}));
-                resultSelect.setOnItemClickListener((adapterView, view1, position, l) -> {
-                    switch (position) {
-                        case 0:
-                            won = true;
-                            break;
-                        case 1:
-                            won = false;
-                            break;
-                    }
-                });
+                winSelectedIndex = 0;
+                new AlertDialog.Builder(context).setSingleChoiceItems(new String[]{"승리", "패배"}, 0,
+                        (dialogInterface, i) -> {
+                            winSelectedIndex = i;
+                            Logger.objs("select", i);
+                        }).setPositiveButton("확인", (dialogInterface, i) -> {
+                    game.setWon(winSelectedIndex == 0);
+                    Navigator.goGameResult(context, copy());
+                    getActivity().finish();
+                }).setNegativeButton("취소", null).show();
 
-                String[] menu = {
-                        getString(R.string.action_save),
-                        getString(R.string.action_cancel),
-                        getString(R.string.action_share),
-                };
-                new AlertDialog.Builder(context).setCustomTitle(v)
-                        .setItems(menu, (dialogInterface, i) -> {
-                            switch (i) {
-                                case 0:
-                                    save(won);
-                                    break;
-                                case 1:
-                                    dialogInterface.dismiss();
-                                    break;
-                                case 2:
-                                    try {
-                                        game.setWon(won);
-                                        KakaoLink kakaoLink = KakaoLink.getKakaoLink(context);
-                                        kakaoLink.sendMessage(kakaoLink.createKakaoTalkLinkMessageBuilder()
-                                                .addText(gameToString(game))
-                                                .addAppButton("앱으로 가기").build(), context);
-                                    } catch (KakaoParameterException e) {
-                                        e.printStackTrace();
-                                    }
-                                    break;
-                            }
-                        }).show();
+//                final View v = LayoutInflater.from(context).inflate(R.layout.finish_dialog, null);
+//                FlatGameItemView gameItemView = (FlatGameItemView) v.findViewById(R.id.game_item_view);
+//                gameItemView.getWon().setVisibility(View.GONE);
+//                PrefixEditTextView history = (PrefixEditTextView) v.findViewById(R.id.history);
+//                processHistory(history);
+//                MaterialBetterSpinner resultSelect = (MaterialBetterSpinner) v.findViewById(R.id.result_select);
+//                gameItemView.setData(game);
+//                resultSelect.setAdapter(new ArrayAdapter<>(context,
+//                        android.R.layout.simple_dropdown_item_1line,
+//                        new String[]{getString(R.string.win), getString(R.string.defeat)}));
+//                resultSelect.setOnItemClickListener((adapterView, view1, position, l) -> {
+//                    switch (position) {
+//                        case 0:
+//                            won = true;
+//                            break;
+//                        case 1:
+//                            won = false;
+//                            break;
+//                    }
+//                });
+//
+//                String[] menu = {
+//                        getString(R.string.action_save),
+//                        getString(R.string.action_cancel),
+//                        getString(R.string.action_share),
+//                };
+//                new AlertDialog.Builder(context).setCustomTitle(v)
+//                        .setItems(menu, (dialogInterface, i) -> {
+//                            switch (i) {
+//                                case 0:
+//                                    save(won);
+//                                    break;
+//                                case 1:
+//                                    dialogInterface.dismiss();
+//                                    break;
+//                                case 2:
+//                                    try {
+//                                        game.setWon(won);
+//                                        KakaoLink kakaoLink = KakaoLink.getKakaoLink(context);
+//                                        kakaoLink.sendMessage(kakaoLink.createKakaoTalkLinkMessageBuilder()
+//                                                .addText(gameToString(game))
+//                                                .addAppButton("앱으로 가기").build(), context);
+//                                    } catch (KakaoParameterException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                    break;
+//                            }
+//                        }).show();
                 break;
 
             case R.id.btn_newgame:
@@ -324,10 +342,9 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                         .show();
                 break;
         }
-
     }
 
-    private void save(boolean won) {
+    private Game copy() {
         byte[] bytes = new byte[game.history.size()];
         int index = 0;
         for (Byte aByte : game.history) {
@@ -335,10 +352,8 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
             index++;
         }
         game.setScores(bytes);
-        Realm realm = Realm.getInstance(context);
-        realm.beginTransaction();
-        Game saved = realm.createObject(Game.class);
-        saved.setWon(won);
+        Game saved = new Game();
+        saved.setWon(game.isWon());
         saved.setScores(game.getScores());
         saved.setAverage(game.getAverage());
         saved.setCreateTime(game.getCreateTime());
@@ -347,10 +362,7 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
         saved.setInning(game.getInning());
         saved.setPoint(game.getPoint());
         saved.setHighrun(game.getHighrun());
-        realm.commitTransaction();
-        reset();
-
-        Util.toast(getString(R.string.saved_n_reset));
+        return saved;
     }
 
     public static final SimpleDateFormat FULL_DATE = new SimpleDateFormat("yyyy.M.d a HH:mm");

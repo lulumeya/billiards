@@ -66,7 +66,7 @@ public class PrefixTextView extends TextView {
             builder.setSpan(new ForegroundColorSpan(prefixColor), 0, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             builder.setSpan(new AbsoluteSizeSpan(prefixSize, false), 0, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             builder.append(text);
-            builder.setSpan(new AbsoluteSizeSpan(Math.round(getTextSize()), false), length, builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            //builder.setSpan(new AbsoluteSizeSpan(Math.round(getTextSize()), false), length, builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             super.setText(builder, BufferType.SPANNABLE);
         } else {
             super.setText(text, type);

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/top_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <pointer.wbc.com.billiardspointer.view.FontIconButton
+            android:id="@+id/btn_exit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1px"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="EXIT"
+            android:textColor="?attr/primary_color"
+            android:textSize="13sp"
+            app:fontFile="@string/roboto_regular"
+            app:iconPadding="10dp" />
+
+        <pointer.wbc.com.billiardspointer.view.FontIconButton
+            android:id="@+id/btn_share_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1px"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:drawableLeft="?attr/share_button"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="IMAGE"
+            android:textColor="?attr/primary_color"
+            android:textSize="13sp"
+            app:fontFile="@string/roboto_regular"
+            app:iconPadding="5dp" />
+
+        <pointer.wbc.com.billiardspointer.view.FontIconButton
+            android:id="@+id/btn_share_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1px"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:drawableLeft="?attr/share_button"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="20dp"
+            android:text="TEXT"
+            android:textColor="?attr/primary_color"
+            android:textSize="13sp"
+            app:fontFile="@string/roboto_regular"
+            app:iconPadding="5dp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/top_menu"
+        android:layout_marginBottom="35dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?attr/dividerColor" />
+
+    <RelativeLayout
+        android:id="@+id/capture_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider1"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp">
+
+        <net.kianoni.fontloader.TextView
+            android:id="@+id/game_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="?attr/primary_color"
+            android:textSize="14sp"
+            tools:text="2014.05.20 PM 07:22 (29min)" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/game_time"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:background="?attr/dividerColor" />
+
+        <LinearLayout
+            android:id="@+id/statistics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider2"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <pointer.wbc.com.billiardspointer.view.PrefixTextView
+                android:id="@+id/average"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.7"
+                android:textColor="?attr/primary_color"
+                android:textSize="30sp"
+                app:fontFile="@string/roboto_regular"
+                app:prefix="AVERAGE\n"
+                app:prefixColor="?attr/secondary_color"
+                app:prefixSize="12sp"
+                tools:text="0.883" />
+
+            <pointer.wbc.com.billiardspointer.view.PrefixTextView
+                android:id="@+id/inning"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.1"
+                android:textColor="?attr/primary_color"
+                android:textSize="30sp"
+                app:fontFile="@string/roboto_regular"
+                app:prefix="INNING\n"
+                app:prefixColor="?attr/secondary_color"
+                app:prefixSize="12sp"
+                tools:text="30" />
+
+            <pointer.wbc.com.billiardspointer.view.PrefixTextView
+                android:id="@+id/cue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="?attr/primary_color"
+                android:textSize="30sp"
+                app:fontFile="@string/roboto_regular"
+                app:prefix="CUE\n"
+                app:prefixColor="?attr/secondary_color"
+                app:prefixSize="12sp"
+                tools:text="45" />
+
+            <pointer.wbc.com.billiardspointer.view.PrefixTextView
+                android:id="@+id/run"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="?attr/primary_color"
+                android:textSize="30sp"
+                app:fontFile="@string/roboto_regular"
+                app:prefix="RUN\n"
+                app:prefixColor="?attr/secondary_color"
+                app:prefixSize="12sp"
+                tools:text="15" />
+
+            <pointer.wbc.com.billiardspointer.view.PrefixTextView
+                android:id="@+id/highrun"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.1"
+                android:textColor="?attr/primary_color"
+                android:textSize="30sp"
+                app:fontFile="@string/roboto_regular"
+                app:prefix="HIGHRUN\n"
+                app:prefixColor="?attr/secondary_color"
+                app:prefixSize="12sp"
+                tools:text="4" />
+        </LinearLayout>
+
+        <net.kianoni.fontloader.TextView
+            android:id="@+id/history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/statistics"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:gravity="top|left"
+            android:lineSpacingExtra="3dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:singleLine="false"
+            android:textColor="?attr/primary_color"
+            android:textSize="17sp"
+            tools:text="01002 00110 10040 00001 10010 10020" />
+
+        <pointer.wbc.com.billiardspointer.view.PrefixTextView
+            android:id="@+id/run_inning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/history"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="?attr/primary_color"
+            android:textSize="12sp"
+            app:fontFile="@string/roboto_regular"
+            app:prefix="RUN INNING : "
+            app:prefixColor="?attr/secondary_color"
+            app:prefixSize="12sp"
+            tools:text="12" />
+
+        <pointer.wbc.com.billiardspointer.view.PrefixTextView
+            android:id="@+id/no_run_inning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/run_inning"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="?attr/primary_color"
+            android:textSize="12sp"
+            app:fontFile="@string/roboto_regular"
+            app:prefix="NO RUN INNING : "
+            app:prefixColor="?attr/secondary_color"
+            app:prefixSize="12sp"
+            tools:text="18" />
+
+        <pointer.wbc.com.billiardspointer.view.PrefixTextView
+            android:id="@+id/run_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/no_run_inning"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="?attr/primary_color"
+            android:textSize="12sp"
+            app:fontFile="@string/roboto_regular"
+            app:prefix="RUN RATE : "
+            app:prefixColor="?attr/secondary_color"
+            app:prefixSize="12sp"
+            tools:text="34% (44 CUES)" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/run_rate"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:background="?attr/dividerColor" />
+
+        <pointer.wbc.com.billiardspointer.view.PrefixTextView
+            android:id="@+id/grand_average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider3"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="?attr/primary_color"
+            android:textSize="30sp"
+            app:fontFile="@string/roboto_regular"
+            app:prefix="G.AVERAGE\n"
+            app:prefixColor="?attr/secondary_color"
+            app:prefixSize="12sp"
+            tools:text="0.852" />
+
+        <pointer.wbc.com.billiardspointer.view.PrefixTextView
+            android:id="@+id/performance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider3"
+            android:layout_toRightOf="@id/grand_average"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="?attr/primary_color"
+            android:textSize="30sp"
+            app:fontFile="@string/roboto_regular"
+            app:prefix="G.A × 25\n"
+            app:prefixColor="?attr/secondary_color"
+            app:prefixSize="12sp"
+            tools:text="21" />
+
+        <net.kianoni.fontloader.TextView
+            android:id="@+id/result_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/divider3"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/red_circle"
+            android:gravity="center"
+            android:textColor="#fff"
+            app:fontFile="@string/roboto_regular"
+            tools:text="WIN" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

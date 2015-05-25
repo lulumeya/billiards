@@ -970,6 +970,10 @@ public class Util {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, i, App.getContext().getResources().getDisplayMetrics());
     }
 
+    public static int spToPixelInt(int i) {
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, i, App.getContext().getResources().getDisplayMetrics()));
+    }
+
     public static void sendNotification(Context context, String s) {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setContentTitle("My에버리지")
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(s)).setContentText(s).setAutoCancel(true).setLights(0x00ff00, 2000, 3000)

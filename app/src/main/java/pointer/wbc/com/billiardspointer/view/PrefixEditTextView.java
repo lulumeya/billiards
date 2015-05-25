@@ -35,7 +35,10 @@ public class PrefixEditTextView extends EditText {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PrefixTextView);
         prefix = a.getString(R.styleable.PrefixTextView_prefix);
 
-        boolean isLight = Pref.getBoolean(Const.KEY_THEME, false);
+        boolean isLight = false;
+        if (!isInEditMode()) {
+            isLight = Pref.getBoolean(Const.KEY_THEME, false);
+        }
         if (isLight) {
             prefixColor = a.getColor(R.styleable.PrefixTextView_prefixColor, 0xffc1c1c1);
         } else {
@@ -60,7 +63,7 @@ public class PrefixEditTextView extends EditText {
             builder.setSpan(new ForegroundColorSpan(prefixColor), 0, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             builder.setSpan(new AbsoluteSizeSpan(prefixSize, false), 0, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             builder.append(text);
-            builder.setSpan(new AbsoluteSizeSpan(Math.round(getTextSize()), false), length, builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            //builder.setSpan(new AbsoluteSizeSpan(Math.round(getTextSize()), false), length, builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             super.setText(builder, BufferType.SPANNABLE);
         } else {
             super.setText(text, type);
