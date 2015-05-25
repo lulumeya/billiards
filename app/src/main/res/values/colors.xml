@@ -21,4 +21,7 @@
 
     <drawable name="transparent">#00000000</drawable>
     <color name="transparent">#00000000</color>
+
+    <color name="divider">#414141</color>
+    <color name="light_divider">#bebebe</color>
 </resources>

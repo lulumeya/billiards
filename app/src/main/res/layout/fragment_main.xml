@@ -1,38 +1,99 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="0,1,2">
-
-    <TableRow>
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_span="2"
-            android:padding="10dp"
-            tools:text="1st game" />
-
-        <TextView
-            android:id="@+id/date"
-            android:padding="10dp"
-            tools:text="2015.04.2" />
-    </TableRow>
-
-    <pointer.wbc.com.billiardspointer.view.PrefixEditTextView
-        android:id="@+id/history"
-        android:layout_weight="1"
-        android:lineSpacingExtra="3dp"
-        android:padding="10dp"
-        android:singleLine="false"
-        android:textSize="26sp"
-        app:prefix="History\n"
-        tools:text="1 0 3 4 0 1 2 3 4 0 1 1 0 2 1 1 0 2 2 2 2 1" />
+    android:orientation="vertical">
 
     <LinearLayout
-        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <net.kianoni.fontloader.TextView
+            android:id="@+id/btn_exit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1px"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="EXIT"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="13sp"
+            app:fontFile="@string/roboto_regular" />
+
+        <net.kianoni.fontloader.TextView
+            android:id="@+id/btn_newgame"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1px"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="RESET"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="13sp" />
+
+        <net.kianoni.fontloader.TextView
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1px"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="FINISH"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?attr/dividerColor" />
+
+    <net.kianoni.fontloader.TextView
+        android:id="@+id/history"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:background="?android:attr/windowBackground"
+        android:gravity="top|center_horizontal"
+        android:lineSpacingExtra="3dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="25dp"
+        android:singleLine="false"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="27sp"
+        tools:text="01002 00110 10040 00001" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?attr/dividerColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="horizontal"
-        android:paddingBottom="10dp">
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
 
         <pointer.wbc.com.billiardspointer.view.PrefixTextView
             android:id="@+id/inning"
@@ -43,8 +104,10 @@
             android:lineSpacingExtra="5dp"
             android:maxLines="2"
             android:padding="5dp"
-            android:textSize="20sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="32sp"
             app:prefix="inning\n"
+            app:prefixColor="?android:attr/textColorPrimary"
             app:prefixSize="10sp"
             tools:text="19" />
 
@@ -57,38 +120,12 @@
             android:lineSpacingExtra="5dp"
             android:maxLines="2"
             android:padding="5dp"
-            android:textSize="20sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="32sp"
             app:prefix="point\n"
+            app:prefixColor="?android:attr/textColorPrimary"
             app:prefixSize="10sp"
             tools:text="38" />
-
-        <pointer.wbc.com.billiardspointer.view.PrefixTextView
-            android:id="@+id/recent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:lineSpacingExtra="5dp"
-            android:maxLines="2"
-            android:padding="5dp"
-            android:textSize="20sp"
-            app:prefix="recent\n"
-            app:prefixSize="10sp"
-            tools:text="1" />
-
-        <pointer.wbc.com.billiardspointer.view.PrefixTextView
-            android:id="@+id/highrun"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:lineSpacingExtra="5dp"
-            android:maxLines="2"
-            android:padding="5dp"
-            android:textSize="20sp"
-            app:prefix="highrun\n"
-            app:prefixSize="10sp"
-            tools:text="11" />
 
         <pointer.wbc.com.billiardspointer.view.PrefixTextView
             android:id="@+id/average"
@@ -99,98 +136,169 @@
             android:lineSpacingExtra="5dp"
             android:maxLines="2"
             android:padding="5dp"
-            android:textSize="20sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="32sp"
             app:prefix="average\n"
+            app:prefixColor="?android:attr/textColorPrimary"
             app:prefixSize="10sp"
             tools:text="2.000" />
 
     </LinearLayout>
 
-    <TableRow>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?attr/dividerColor" />
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_point4"
-            android:minHeight="55dp"
-            android:tag="4"
-            android:text="4"
-            android:textSize="30sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?attr/dividerColor"
+        android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatButton
+        <net.kianoni.fontloader.TextView
             android:id="@+id/btn_point5"
-            android:minHeight="55dp"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:drawableRight="@drawable/vertical_divider_85"
+            android:gravity="center"
+            android:minHeight="85dp"
             android:tag="5"
             android:text="5"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="30sp" />
 
-        <android.support.v7.widget.AppCompatButton
+        <ImageView
             android:id="@+id/btn_point_more"
-            android:minHeight="55dp"
-            android:tag="▼"
-            android:text="▼"
-            android:textSize="30sp" />
-    </TableRow>
-
-    <TableRow>
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_point1"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
             android:minHeight="85dp"
-            android:tag="1"
-            android:text="1"
+            android:scaleType="centerInside"
+            android:src="?attr/more_button"
+            android:tag="▼"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="30sp" />
 
-        <android.support.v7.widget.AppCompatButton
+        <ImageView
+            android:id="@+id/btn_point_back"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_marginLeft="1px"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:minHeight="85dp"
+            android:scaleType="centerInside"
+            android:src="?attr/back_button"
+            android:tag="←" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?attr/dividerColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <net.kianoni.fontloader.TextView
             android:id="@+id/btn_point2"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:drawableRight="@drawable/vertical_divider_85"
+            android:gravity="center"
             android:minHeight="85dp"
             android:tag="2"
             android:text="2"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="30sp" />
 
-        <android.support.v7.widget.AppCompatButton
+        <net.kianoni.fontloader.TextView
             android:id="@+id/btn_point3"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:gravity="center"
             android:minHeight="85dp"
             android:tag="3"
             android:text="3"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="30sp" />
-    </TableRow>
 
-    <TableRow>
+        <net.kianoni.fontloader.TextView
+            android:id="@+id/btn_point4"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:drawableLeft="@drawable/vertical_divider_85"
+            android:gravity="center"
+            android:minHeight="85dp"
+            android:tag="4"
+            android:text="4"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="30sp" />
+    </LinearLayout>
 
-        <android.support.v7.widget.AppCompatButton
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?attr/dividerColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <net.kianoni.fontloader.TextView
             android:id="@+id/btn_point0"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
             android:layout_span="2"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:drawableRight="@drawable/vertical_divider_95"
+            android:gravity="center"
             android:minHeight="85dp"
             android:tag="0"
             android:text="0"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="30sp" />
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_point_back"
+        <net.kianoni.fontloader.TextView
+            android:id="@+id/btn_point1"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:layout_weight="1"
+            android:background="@drawable/ripple_window_bg"
+            android:gravity="center"
             android:minHeight="85dp"
-            android:tag="←"
-            android:text="←"
+            android:tag="1"
+            android:text="1"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="30sp" />
 
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow>
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_newgame"
-            android:minHeight="55dp"
-            android:text="NEW GAME"
-            android:textSize="13sp" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_save"
-            android:minHeight="55dp"
-            android:text="SAVE"
-            android:textSize="13sp" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_share"
-            android:minHeight="55dp"
-            android:text="SHARE"
-            android:textSize="13sp" />
-    </TableRow>
-</TableLayout>
+</LinearLayout>

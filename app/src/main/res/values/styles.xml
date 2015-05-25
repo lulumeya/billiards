@@ -6,6 +6,7 @@
         <item name="android:windowBackground">@drawable/dark_bg_shape</item>
         <item name="windowBgColor">@color/dark_bg</item>
         <item name="android:textViewStyle">@style/TextStyle</item>
+        <item name="dividerColor">@color/divider</item>
 
         <item name="back_button">@mipmap/btn_back</item>
         <item name="close_button">@mipmap/btn_close</item>
@@ -22,6 +23,7 @@
         <item name="android:windowBackground">@drawable/light_bg_shape</item>
         <item name="windowBgColor">@color/light_bg</item>
         <item name="android:textViewStyle">@style/TextStyle.Light</item>
+        <item name="dividerColor">@color/light_divider</item>
 
         <item name="back_button">@mipmap/w_btn_back</item>
         <item name="close_button">@mipmap/w_btn_close</item>

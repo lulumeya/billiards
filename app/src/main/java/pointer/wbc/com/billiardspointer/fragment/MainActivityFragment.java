@@ -3,7 +3,6 @@ package pointer.wbc.com.billiardspointer.fragment;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.AppCompatButton;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -28,12 +27,10 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
 import io.realm.Realm;
-import pointer.wbc.com.billiardspointer.BaseActivity;
 import pointer.wbc.com.billiardspointer.R;
 import pointer.wbc.com.billiardspointer.model.Game;
 import pointer.wbc.com.billiardspointer.util.Util;
 import pointer.wbc.com.billiardspointer.view.FlatGameItemView;
-import pointer.wbc.com.billiardspointer.view.HistoryGameItemView;
 import pointer.wbc.com.billiardspointer.view.PrefixEditTextView;
 import pointer.wbc.com.billiardspointer.view.PrefixTextView;
 
@@ -42,31 +39,23 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
 
     Game game;
 
-    @InjectView(R.id.title)
-    TextView title;
-    @InjectView(R.id.date)
-    TextView date;
     @InjectView(R.id.history)
-    PrefixEditTextView history;
+    TextView history;
     @InjectView(R.id.inning)
     PrefixTextView inning;
     @InjectView(R.id.point)
     PrefixTextView point;
-    @InjectView(R.id.recent)
-    PrefixTextView recent;
-    @InjectView(R.id.highrun)
-    PrefixTextView highrun;
     @InjectView(R.id.average)
     PrefixTextView average;
     @InjectView(R.id.btn_newgame)
-    AppCompatButton btnNewgame;
+    TextView btnNewgame;
     @InjectView(R.id.btn_save)
-    AppCompatButton btnSave;
-    @InjectView(R.id.btn_share)
-    AppCompatButton btnShare;
+    TextView btnSave;
     @InjectViews({R.id.btn_point0, R.id.btn_point1, R.id.btn_point2, R.id.btn_point3, R.id.btn_point4, R.id.btn_point5, R.id.btn_point_back, R.id.btn_point_more})
     List<View> buttons;
     private static final String[] numbers = new String[30];
+    @InjectView(R.id.btn_exit)
+    net.kianoni.fontloader.TextView btnExit;
     private Dialog gridDialog;
 
     @Override
@@ -80,7 +69,7 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
 
         btnSave.setOnClickListener(this);
         btnNewgame.setOnClickListener(this);
-        btnShare.setOnClickListener(this);
+        btnExit.setOnClickListener(this);
 
         for (View button : buttons) {
             button.setOnClickListener(pointListener);
@@ -212,11 +201,11 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
         }
         this.inning.setText(String.valueOf(game.history.size()));
         game.setInning(game.history.size());
-        if (game.history.size() > 0) {
-            this.recent.setText(String.valueOf(game.history.get(game.history.size() - 1)));
-        } else {
-            this.recent.setText("");
-        }
+//        if (game.history.size() > 0) {
+//            this.recent.setText(String.valueOf(game.history.get(game.history.size() - 1)));
+//        } else {
+//            this.recent.setText("");
+//        }
         this.point.setText(String.valueOf(sum));
         game.setPoint(sum);
         game.setLastScoreTime(System.currentTimeMillis());
@@ -242,7 +231,6 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
             }
         }
         history.setText(builder);
-        this.highrun.setText(String.valueOf(highrun));
         game.setHighrun(highrun);
         return sum;
     }
@@ -315,14 +303,23 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                         .setPositiveButton(getString(R.string.init), (dialog1, which) -> reset())
                         .setNegativeButton(getString(R.string.action_cancel), null)
                         .show();
+                break;
 
-            case R.id.btn_share:
-                HistoryGameItemView itemView = new HistoryGameItemView(context);
-                itemView.setData(game);
+//            case R.id.btn_share:
+//                HistoryGameItemView itemView = new HistoryGameItemView(context);
+//                itemView.setData(game);
+//                new AlertDialog.Builder(context)
+//                        .setCustomTitle(itemView)
+//                        .setMessage("위의 내용으로 이미지를 공유합니다.")
+//                        .setPositiveButton("공유하기", (dialog1, which) -> Util.share((BaseActivity) getActivity(), itemView))
+//                        .setNegativeButton(getString(R.string.action_cancel), null)
+//                        .show();
+//                break;
+
+            case R.id.btn_exit:
                 new AlertDialog.Builder(context)
-                        .setCustomTitle(itemView)
-                        .setMessage("위의 내용으로 이미지를 공유합니다.")
-                        .setPositiveButton("공유하기", (dialog1, which) -> Util.share((BaseActivity) getActivity(), itemView))
+                        .setMessage("게임을 취소하고 이전화면으로 돌아갑니다.")
+                        .setPositiveButton("확인", (dialog1, which) -> getActivity().finish())
                         .setNegativeButton(getString(R.string.action_cancel), null)
                         .show();
                 break;

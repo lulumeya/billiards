@@ -30,6 +30,7 @@
 
     <string name="roboto_bold">Roboto-Bold.ttf</string>
     <string name="roboto_medium">Roboto-Medium.ttf</string>
-    <string name="roboto_Regular">Roboto-Regular.ttf</string>
+    <string name="roboto_regular">Roboto-Regular.ttf</string>
     <string name="not_avail">n/a</string>
+    <string name="blank" />
 </resources>

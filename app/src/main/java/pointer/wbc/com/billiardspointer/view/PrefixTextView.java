@@ -9,6 +9,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 
+import net.kianoni.fontloader.FontLoader;
 import net.kianoni.fontloader.TextView;
 
 import pointer.wbc.com.billiardspointer.Const;
@@ -36,7 +37,10 @@ public class PrefixTextView extends TextView {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PrefixTextView);
         prefix = a.getString(R.styleable.PrefixTextView_prefix);
 
-        boolean isLight = Pref.getBoolean(Const.KEY_THEME, false);
+        boolean isLight = false;
+        if (!isInEditMode()) {
+            isLight = Pref.getBoolean(Const.KEY_THEME, false);
+        }
         if (isLight) {
             prefixColor = a.getColor(R.styleable.PrefixTextView_prefixColor, 0xffc1c1c1);
         } else {
@@ -44,6 +48,8 @@ public class PrefixTextView extends TextView {
         }
         prefixSize = Math.round(a.getDimension(R.styleable.PrefixTextView_prefixSize, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 13, context.getResources().getDisplayMetrics())));
         a.recycle();
+
+        readAttributes(context, attrs);
 
         setText(getText());
     }
@@ -64,6 +70,47 @@ public class PrefixTextView extends TextView {
             super.setText(builder, BufferType.SPANNABLE);
         } else {
             super.setText(text, type);
+        }
+    }
+
+    private void readAttributes(Context context, AttributeSet attrs) {
+        TypedArray styledAttributes = context.obtainStyledAttributes(attrs, net.kianoni.fontloader.R.styleable.TextView);
+        String fontFile = null;
+        String fontFamily = null;
+        String fontVariant = null;
+        String fontFilePattern = null;
+        int N = styledAttributes.getIndexCount();
+
+        for (int i = 0; i < N; ++i) {
+            int attr = styledAttributes.getIndex(i);
+            if (net.kianoni.fontloader.R.styleable.TextView_fontFile == attr) {
+                fontFile = styledAttributes.getString(attr);
+            }
+
+            if (net.kianoni.fontloader.R.styleable.TextView_fontFamily == attr) {
+                fontFamily = styledAttributes.getString(attr);
+            }
+
+            if (net.kianoni.fontloader.R.styleable.TextView_fontVariant == attr) {
+                fontVariant = styledAttributes.getString(attr);
+            }
+
+            if (net.kianoni.fontloader.R.styleable.TextView_fontFilePattern == attr) {
+                fontFilePattern = styledAttributes.getString(attr);
+            }
+        }
+
+        styledAttributes.recycle();
+        if (fontFamily != null && fontVariant != null && fontFilePattern != null) {
+            if (fontFile != null) {
+                throw new RuntimeException("Attempting to set fontFile together with fontFilePattern");
+            }
+
+            this.setTypeface(FontLoader.getInstance().getTypeFace(context, fontFamily, fontVariant, fontFilePattern));
+        }
+
+        if (fontFile != null) {
+            this.setTypeface(FontLoader.getInstance().getTypeFace(context, fontFile));
         }
     }
 }

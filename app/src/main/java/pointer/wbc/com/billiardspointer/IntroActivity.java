@@ -103,9 +103,9 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
             this.average.setText(getString(R.string.not_avail));
             this.winRate.setText(getString(R.string.not_avail));
             this.highrun.setText(getString(R.string.not_avail));
-            this.totalGames.setText("");
-            this.totalWins.setText("");
-            this.highrunDate.setText("");
+            this.totalGames.setText(getString(R.string.blank));
+            this.totalWins.setText(getString(R.string.blank));
+            this.highrunDate.setText(getString(R.string.blank));
 
             return;
         }
