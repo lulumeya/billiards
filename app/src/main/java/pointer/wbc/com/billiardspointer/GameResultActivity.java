@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.kakao.KakaoLink;
+import com.kakao.KakaoParameterException;
+
 import net.kianoni.fontloader.TextView;
 
 import java.text.SimpleDateFormat;
@@ -243,6 +246,55 @@ public class GameResultActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_exit:
+                finish();
+                break;
 
+            case R.id.btn_share_image:
+                Util.share(this, captureArea);
+                break;
+
+            case R.id.btn_share_text:
+                try {
+                    KakaoLink kakaoLink = KakaoLink.getKakaoLink(context);
+                    kakaoLink.sendMessage(kakaoLink.createKakaoTalkLinkMessageBuilder()
+                            .addText(gameToString(game))
+                            .addAppButton("앱으로 가기").build(), context);
+                } catch (KakaoParameterException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
+    }
+
+    public String gameToString(Game game) {
+        StringBuilder builder = new StringBuilder()
+                .append(getString(R.string.start_time) + "  ")
+                .append(FULL_FORMAT.format(game.getCreateTime()))
+                .append("\n")
+                .append(getString(R.string.end_time) + "  ")
+                .append(FULL_FORMAT.format((game.getLastScoreTime())))
+                .append("\n")
+                .append(getString(R.string.average) + "  ")
+                .append(String.format("%.3f", (game.getAverage())))
+                .append("\n")
+                .append(getString(R.string.total_point) + "  ")
+                .append((game.getPoint()) + getString(R.string.point))
+                .append("\n")
+                .append(getString(R.string.high_run) + "  ")
+                .append((game.getHighrun()) + getString(R.string.point))
+                .append("\n")
+                .append(getString(R.string.result) + "  ")
+                .append((game.isWon()) ? getString(R.string.win) : getString(R.string.defeat))
+                .append("\n")
+                .append(getString(R.string.inning) + "  ")
+                .append((game.getInning()) + getString(R.string.inning)).append("\n")
+                .append(getString(R.string.point_per_inning) + "  ");
+
+        for (Byte aByte : (game.getHistory())) {
+            builder.append(String.valueOf(aByte));
+        }
+        return builder.toString();
     }
 }

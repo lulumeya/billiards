@@ -70,10 +70,11 @@ public class Util {
     public static void share(BaseActivity activity, View v) {
         try {
             ShareCompat.IntentBuilder builder = ShareCompat.IntentBuilder.from(activity);
+            v.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
             v.setDrawingCacheEnabled(true);
             v.buildDrawingCache(true);
             Bitmap bitmap = v.getDrawingCache();
-            File f = new File(Environment.getExternalStorageDirectory(), "healingpaper_share.png");
+            File f = new File(Environment.getExternalStorageDirectory(), "billiards_pointer_share_img.png");
             if (!f.exists()) {
                 f.createNewFile();
             }
