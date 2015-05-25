@@ -37,14 +37,13 @@ android {
             keyAlias "healingpaper"
             storePassword "healingpaper1"
             keyPassword "healingpaper1"
-            // storePassword System.in.readLine("\nKeystore password: ")
-            // keyPassword System.in.readLine("\nKey password: ")
         }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

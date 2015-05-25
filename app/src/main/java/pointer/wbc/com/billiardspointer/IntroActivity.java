@@ -103,14 +103,13 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
 
     private void applyGameStatistics() {
         Realm realm = Realm.getInstance(context);
-        if (realm.where(Game.class).count() == 0) {
+        if (realm.where(Game.class).equalTo("deleteCandidate", false).findAll().size() == 0) {
             this.average.setText(getString(R.string.not_avail));
             this.winRate.setText(getString(R.string.not_avail));
             this.highrun.setText(getString(R.string.not_avail));
             this.totalGames.setText(getString(R.string.blank));
             this.totalWins.setText(getString(R.string.blank));
             this.highrunDate.setText(getString(R.string.blank));
-
             return;
         }
         double average = realm.where(Game.class).equalTo("deleteCandidate", false).averageFloat("average");

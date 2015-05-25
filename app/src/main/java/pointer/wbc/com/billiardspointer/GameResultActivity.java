@@ -292,7 +292,7 @@ public class GameResultActivity extends BaseActivity implements View.OnClickList
                 .append((game.getInning()) + getString(R.string.inning)).append("\n")
                 .append(getString(R.string.point_per_inning) + "  ");
 
-        for (Byte aByte : (game.getHistory())) {
+        for (Byte aByte : (game.getScores())) {
             builder.append(String.valueOf(aByte));
         }
         return builder.toString();

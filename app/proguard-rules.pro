@@ -26,9 +26,29 @@
 -dontwarn javax.**
 -dontwarn io.realm.**
 
+-keep class retrofit.** { *; }
+
+-dontwarn com.google.**
+-dontwarn com.phillipcalvin.**
+-dontwarn com.viewpagerindicator.**
+-dontwarn com.facebook.**
+-dontwarn android.support.**
+-dontwarn com.wdullaer.materialdatetimepicker.**
+-dontwarn net.kianoni.fontloader.**
 -dontwarn rx.internal.**
 -dontwarn java.lang.invoke.*
 -dontwarn retrofit.**
+-dontwarn com.makeramen.roundedimageview.**
+-dontwarn com.ning.http.**
+-dontwarn org.jboss.marshalling.**
+-dontwarn org.slf4j.**
+-dontwarn org.osgi.**
+-dontwarn org.glassfish.**
+-dontwarn org.apache.**
+-dontwarn org.jboss.**
+-dontwarn org.w3c.**
+-dontwarn butterknife.internal.**
+-dontwarn javax.annotation.**
 -keep class retrofit.** { *; }
 
 -keep class **Lambda.** { *; }
@@ -40,6 +60,18 @@
 -dontwarn **Api20$Builder
 -dontwarn **v7.app.ActionBar
 -keep class android.support.v4.** { *; }
+
+-keep class butterknife.** { *; }
+-dontwarn butterknife.internal.**
+-keep class **$$ViewInjector { *; }
+
+-keepclasseswithmembernames class * {
+    @butterknife.* <fields>;
+}
+
+-keepclasseswithmembernames class * {
+    @butterknife.* <methods>;
+}
 
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
