@@ -16,5 +16,8 @@
     <attr name="primary_color" format="color" />
     <attr name="windowBgColor" format="color" />
     <attr name="windowBgDrawable" format="reference" />
+    <attr name="windowBgSelector" format="reference" />
+    <attr name="ripple_menu" format="reference" />
     <attr name="dividerColor" format="color" />
+    <attr name="divider_85" format="reference" />
 </resources>

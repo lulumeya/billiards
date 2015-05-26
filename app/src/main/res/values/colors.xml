@@ -25,4 +25,7 @@
 
     <color name="divider">#414141</color>
     <color name="light_divider">#bebebe</color>
+
+    <drawable name="secondary">#474747</drawable>
+    <drawable name="secondary_light">#c1c1c1</drawable>
 </resources>

@@ -2,6 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <size
         android:width="1px"
-        android:height="95dp" />
-    <solid android:color="?attr/dividerColor" />
+        android:height="85dp" />
+    <solid android:color="@color/light_divider" />
 </shape>

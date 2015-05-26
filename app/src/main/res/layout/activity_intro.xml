@@ -66,7 +66,7 @@
             android:stretchColumns="0,1,2">
 
             <TableRow
-                android:background="@drawable/ripple_window_bg"
+                android:background="?attr/windowBgSelector"
                 android:paddingBottom="10dp"
                 android:paddingTop="15dp">
 
@@ -93,7 +93,7 @@
             </TableRow>
 
             <TableRow
-                android:background="@drawable/ripple_window_bg"
+                android:background="?attr/windowBgSelector"
                 android:paddingBottom="5dp">
 
                 <net.kianoni.fontloader.TextView
@@ -122,7 +122,7 @@
             </TableRow>
 
             <TableRow
-                android:background="@drawable/ripple_window_bg"
+                android:background="?attr/windowBgSelector"
                 android:paddingBottom="15dp">
 
                 <net.kianoni.fontloader.TextView
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="1px"
                 android:layout_weight="1"
-                android:background="@drawable/ripple_window_bg"
+                android:background="?attr/windowBgSelector"
                 android:orientation="vertical">
 
                 <net.kianoni.fontloader.TextView
@@ -196,7 +196,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/ripple_window_bg"
+                android:background="?attr/windowBgSelector"
                 android:orientation="vertical">
 
                 <net.kianoni.fontloader.TextView
@@ -238,7 +238,7 @@
             android:id="@+id/btn_theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_menu"
+            android:background="?attr/ripple_menu"
             android:padding="10dp"
             android:text="테마 변경"
             android:textColor="?attr/primary_color"
@@ -249,7 +249,7 @@
             android:id="@+id/go_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_menu"
+            android:background="?attr/ripple_menu"
             android:padding="10dp"
             android:text="게임 목록"
             android:textColor="?attr/primary_color"

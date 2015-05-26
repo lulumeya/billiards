@@ -6,6 +6,7 @@
         <item name="android:windowBackground">@drawable/dark_bg_shape</item>
         <item name="windowBgColor">@color/dark_bg</item>
         <item name="windowBgDrawable">@drawable/dark_bg</item>
+        <item name="windowBgSelector">@drawable/ripple_window_bg</item>
         <item name="android:textViewStyle">@style/TextStyle</item>
         <item name="dividerColor">@color/divider</item>
 
@@ -16,7 +17,9 @@
         <item name="share_button">@mipmap/btn_share</item>
 
         <item name="secondary_color">#474747</item>
+        <item name="ripple_menu">@drawable/ripple_menu</item>
         <item name="primary_color">#ffffff</item>
+        <item name="divider_85">@drawable/vertical_divider_85</item>
     </style>
 
     <!-- Base application theme. -->
@@ -25,6 +28,7 @@
         <item name="android:windowBackground">@drawable/light_bg_shape</item>
         <item name="windowBgColor">@color/light_bg</item>
         <item name="windowBgDrawable">@drawable/light_bg</item>
+        <item name="windowBgSelector">@drawable/ripple_window_bg_light</item>
         <item name="android:textViewStyle">@style/TextStyle.Light</item>
         <item name="dividerColor">@color/light_divider</item>
 
@@ -34,9 +38,13 @@
         <item name="more_button">@mipmap/w_btn_more</item>
         <item name="share_button">@mipmap/w_btn_share</item>
 
-        <item name="primary_color">#333333</item>
         <item name="secondary_color">#c1c1c1</item>
+        <item name="ripple_menu">@drawable/ripple_menu_light</item>
+        <item name="primary_color">#333333</item>
+        <item name="divider_85">@drawable/vertical_divider_85_light</item>
     </style>
+
+
 
     <style name="TextStyle" parent="@android:style/Widget.TextView">
         <item name="android:textColorSecondary">#474747</item>
