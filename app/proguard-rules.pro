@@ -73,6 +73,22 @@
     @butterknife.* <methods>;
 }
 
+-keep public class com.kakao.** {
+    public <init>(**);
+    public <fields>;
+}
+-keepclasseswithmembernames public class com.kakao.** {
+    public <init>(**);
+    public <fields>;
+}
+
+-keepnames public class com.kakao.** {
+    public <init>(**);
+    public <fields>;
+}
+
+-keeppackagenames com.kakao.**
+
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
