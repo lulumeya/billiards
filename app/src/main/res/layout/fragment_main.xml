@@ -71,6 +71,7 @@
         android:layout_marginLeft="15dp"
         android:layout_weight="1"
         android:background="?attr/windowBgDrawable"
+        android:focusable="false"
         android:gravity="top|left"
         android:lineSpacingExtra="3dp"
         android:paddingBottom="10dp"

@@ -190,7 +190,6 @@
             android:layout_below="@id/statistics"
             android:layout_gravity="left"
             android:layout_marginLeft="20dp"
-            android:focusable="false"
             android:gravity="top|left"
             android:lineSpacingExtra="3dp"
             android:paddingBottom="15dp"
