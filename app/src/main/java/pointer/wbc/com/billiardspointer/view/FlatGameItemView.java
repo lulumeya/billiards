@@ -32,7 +32,6 @@ public class FlatGameItemView extends FrameLayout {
     PrefixTextView highrun;
     @InjectView(R.id.average)
     PrefixTextView average;
-
     @InjectView(R.id.won)
     TextView won;
 

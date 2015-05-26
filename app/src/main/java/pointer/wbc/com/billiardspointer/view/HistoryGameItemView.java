@@ -26,7 +26,6 @@ public class HistoryGameItemView extends CardView {
     public static final SimpleDateFormat FULL_DATE = new SimpleDateFormat("yyyy.M.d a HH:mm");
     private static final ViewGroup.LayoutParams HIDE_PARAMS = new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, 0);
     private static final ViewGroup.LayoutParams WRAP_PARAMS = new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-    ;
     @InjectView(R.id.startTime)
     PrefixTextView startTime;
     @InjectView(R.id.endTime)
@@ -39,10 +38,10 @@ public class HistoryGameItemView extends CardView {
     PrefixTextView highrun;
     @InjectView(R.id.average)
     PrefixTextView average;
+    @InjectView(R.id.history)
+    PrefixTextView history;
     @InjectView(R.id.won)
     TextView won;
-    @InjectView(R.id.history)
-    PrefixEditTextView history;
     private Game data;
     private final SpannableStringBuilder builder = new SpannableStringBuilder();
 

@@ -27,7 +27,7 @@ public class Migration implements RealmMigration {
             long typeIndex = gameTable.addColumn(ColumnType.INTEGER, "result");
             for (int i = 0; i < gameTable.size(); i++) {
                 boolean won = gameTable.getBoolean(oldTypeIndex, i);
-                gameTable.setLong(typeIndex, i, won ? 1 : 0);
+                gameTable.setLong(typeIndex, i, won ? Game.WIN : Game.LOSE);
             }
             gameTable.removeColumn(oldTypeIndex);
             version++;
