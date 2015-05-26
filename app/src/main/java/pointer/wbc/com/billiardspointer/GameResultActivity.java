@@ -1,6 +1,5 @@
 package pointer.wbc.com.billiardspointer;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.text.SpannableStringBuilder;
@@ -178,8 +177,8 @@ public class GameResultActivity extends BaseActivity implements View.OnClickList
                 resultCircle.setBackgroundResource(R.drawable.blue_circle);
                 resultCircle.setText("LOSE");
             } else {
-                resultCircle.setBackgroundResource(R.drawable.green_circle);
-                resultCircle.setText("NO GAME");
+                resultCircle.setBackgroundResource(R.drawable.gray_circle);
+                resultCircle.setText("NO\nGAME");
             }
         }
     }
@@ -261,13 +260,12 @@ public class GameResultActivity extends BaseActivity implements View.OnClickList
 //                    e.printStackTrace();
 //                }
 
-                Intent intent = ShareCompat.IntentBuilder.from(this)
+                ShareCompat.IntentBuilder.from(this)
                         .setText(gameToString(game))
                         .setType("plain/text")
-                        .setSubject(SHORT_FORMAT.format(new Date()) + " 게임결과")
                         .setChooserTitle("공유할 앱을 선택하세요.")
-                        .getIntent();
-                startActivity(intent);
+                        .setSubject(SHORT_FORMAT.format(new Date()) + " 게임결과")
+                        .startChooser();
                 break;
         }
     }
