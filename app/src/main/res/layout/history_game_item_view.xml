@@ -95,16 +95,16 @@
         app:prefixSize="9sp"
         tools:text="1.212" />
 
-    <pointer.wbc.com.billiardspointer.view.PrefixEditTextView
+    <pointer.wbc.com.billiardspointer.view.PrefixTextView
         android:id="@+id/history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="#ffefefef"
-        android:lineSpacingExtra="3dp"
         android:layout_below="@id/average"
         android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:lineSpacingExtra="3dp"
         android:singleLine="false"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="26sp"
         app:prefix="History\n"
         tools:text="1 0 3 4 0 1 2 3 4 0 1 1 0 2 1 1 0 2 2 2 2 1" />

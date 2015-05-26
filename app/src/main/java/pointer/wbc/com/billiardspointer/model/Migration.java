@@ -20,6 +20,18 @@ public class Migration implements RealmMigration {
             }
             version++;
         }
+        if (version == 1) {
+            // change won(boolean) to result(int)
+            Table gameTable = realm.getTable(Game.class);
+            long oldTypeIndex = getIndexForProperty(gameTable, "won");
+            long typeIndex = gameTable.addColumn(ColumnType.INTEGER, "result");
+            for (int i = 0; i < gameTable.size(); i++) {
+                boolean won = gameTable.getBoolean(oldTypeIndex, i);
+                gameTable.setLong(typeIndex, i, won ? 1 : 0);
+            }
+            gameTable.removeColumn(oldTypeIndex);
+            version++;
+        }
         return version;
     }
 

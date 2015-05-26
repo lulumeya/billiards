@@ -53,9 +53,11 @@ import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.realm.annotations.Ignore;
 import pointer.wbc.com.billiardspointer.App;
 import pointer.wbc.com.billiardspointer.BaseActivity;
 import pointer.wbc.com.billiardspointer.log.Logger;
+import pointer.wbc.com.billiardspointer.model.Game;
 
 public class Util {
 
@@ -1015,5 +1017,17 @@ public class Util {
             drawable = resources.getDrawable(drawableResource);
         }
         return drawable;
+    }
+
+    @Ignore
+    public static String resultAsString(int result) {
+        switch (result) {
+            case Game.WIN:
+                return "WIN";
+            case Game.LOSE:
+                return "LOSE";
+            default:
+                return "NO_GAME";
+        }
     }
 }

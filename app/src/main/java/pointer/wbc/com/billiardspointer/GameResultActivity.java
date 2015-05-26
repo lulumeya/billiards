@@ -1,6 +1,8 @@
 package pointer.wbc.com.billiardspointer;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ShareCompat;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
@@ -9,9 +11,6 @@ import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-
-import com.kakao.KakaoLink;
-import com.kakao.KakaoParameterException;
 
 import net.kianoni.fontloader.TextView;
 
@@ -79,6 +78,7 @@ public class GameResultActivity extends BaseActivity implements View.OnClickList
     private Game game;
 
     private static final SimpleDateFormat FULL_FORMAT = new SimpleDateFormat("yyyy.MM.dd a HH:mm");
+    private static final SimpleDateFormat SHORT_FORMAT = new SimpleDateFormat("yyyy.MM.dd");
     private final SpannableStringBuilder builder = new SpannableStringBuilder();
 
     @Override
@@ -171,28 +171,24 @@ public class GameResultActivity extends BaseActivity implements View.OnClickList
             builder.setSpan(new AbsoluteSizeSpan(13, true), length, builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             performance.setText(builder);
 
-            if (game.isWon()) {
+            if (game.getResult() == Game.WIN) {
                 resultCircle.setBackgroundResource(R.drawable.red_circle);
                 resultCircle.setText("WIN");
-            } else {
+            } else if (game.getResult() == Game.LOSE) {
                 resultCircle.setBackgroundResource(R.drawable.blue_circle);
                 resultCircle.setText("LOSE");
+            } else {
+                resultCircle.setBackgroundResource(R.drawable.green_circle);
+                resultCircle.setText("NO GAME");
             }
         }
     }
 
     private void save() {
-        byte[] bytes = new byte[game.history.size()];
-        int index = 0;
-        for (Byte aByte : game.history) {
-            bytes[index] = aByte;
-            index++;
-        }
-        game.setScores(bytes);
         Realm realm = Realm.getInstance(context);
         realm.beginTransaction();
         Game saved = realm.createObject(Game.class);
-        saved.setWon(game.isWon());
+        saved.setResult(game.getResult());
         saved.setScores(game.getScores());
         saved.setAverage(game.getAverage());
         saved.setCreateTime(game.getCreateTime());
@@ -256,14 +252,22 @@ public class GameResultActivity extends BaseActivity implements View.OnClickList
                 break;
 
             case R.id.btn_share_text:
-                try {
-                    KakaoLink kakaoLink = KakaoLink.getKakaoLink(context);
-                    kakaoLink.sendMessage(kakaoLink.createKakaoTalkLinkMessageBuilder()
-                            .addText(gameToString(game))
-                            .addAppButton("앱으로 가기").build(), context);
-                } catch (KakaoParameterException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    KakaoLink kakaoLink = KakaoLink.getKakaoLink(context);
+//                    kakaoLink.sendMessage(kakaoLink.createKakaoTalkLinkMessageBuilder()
+//                            .addText(gameToString(game))
+//                            .addAppButton("앱으로 가기").build(), context);
+//                } catch (KakaoParameterException e) {
+//                    e.printStackTrace();
+//                }
+
+                Intent intent = ShareCompat.IntentBuilder.from(this)
+                        .setText(gameToString(game))
+                        .setType("plain/text")
+                        .setSubject(SHORT_FORMAT.format(new Date()) + " 게임결과")
+                        .setChooserTitle("공유할 앱을 선택하세요.")
+                        .getIntent();
+                startActivity(intent);
                 break;
         }
     }
@@ -286,7 +290,7 @@ public class GameResultActivity extends BaseActivity implements View.OnClickList
                 .append((game.getHighrun()) + getString(R.string.point))
                 .append("\n")
                 .append(getString(R.string.result) + "  ")
-                .append((game.isWon()) ? getString(R.string.win) : getString(R.string.defeat))
+                .append(Util.resultAsString(game.getResult()))
                 .append("\n")
                 .append(getString(R.string.inning) + "  ")
                 .append((game.getInning()) + getString(R.string.inning)).append("\n")

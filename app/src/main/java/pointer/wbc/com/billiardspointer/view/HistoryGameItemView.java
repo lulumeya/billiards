@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import pointer.wbc.com.billiardspointer.R;
 import pointer.wbc.com.billiardspointer.model.Game;
+import pointer.wbc.com.billiardspointer.util.Util;
 
 /**
  * Created by Dalton on 15. 5. 19..
@@ -68,7 +69,7 @@ public class HistoryGameItemView extends CardView {
         inning.setText(data.getInning() + "이닝");
         highrun.setText(data.getHighrun() + "점 ");
         average.setText(String.format("%.3f", data.getAverage()));
-        won.setText(data.isWon() ? "Win!!" : "Loose..");
+        won.setText(Util.resultAsString(data.getResult()));
     }
 
     private int processHistory(TextView history, Game game) {
@@ -93,12 +94,8 @@ public class HistoryGameItemView extends CardView {
             int index = builder.length();
             int size = index + text.length();
             builder.append(text).append(" ");
-            if (score > 9) {
-                builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.tiffany_red)), index, size, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            } else if (score > 4) {
-                builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.tiffany_yellow)), index, size, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            } else if (score > 2) {
-                builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.tiffany_green)), index, size, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            if (score > 2) {
+                builder.setSpan(new ForegroundColorSpan(0xffff0000), index, size, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
         }
         history.setText(builder);

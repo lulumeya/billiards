@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import pointer.wbc.com.billiardspointer.R;
 import pointer.wbc.com.billiardspointer.model.Game;
+import pointer.wbc.com.billiardspointer.util.Util;
 
 /**
  * Created by Dalton on 15. 5. 19..
@@ -36,6 +37,7 @@ public class FlatGameItemView extends FrameLayout {
     TextView won;
 
     private Game data;
+
     public FlatGameItemView(Context context) {
         this(context, null);
     }
@@ -58,7 +60,7 @@ public class FlatGameItemView extends FrameLayout {
         inning.setText(data.getInning() + "이닝");
         highrun.setText(data.getHighrun() + "점 ");
         average.setText(String.format("%.3f", data.getAverage()));
-        won.setText(data.isWon() ? "Win!!" : "Loose..");
+        won.setText(Util.resultAsString(data.getResult()));
     }
 
     public Game getData() {

@@ -113,15 +113,15 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
             return;
         }
         double average = realm.where(Game.class).equalTo("deleteCandidate", false).averageFloat("average");
-        long winCount = realm.where(Game.class).equalTo("deleteCandidate", false).equalTo("won", true).count();
+        long winCount = realm.where(Game.class).equalTo("deleteCandidate", false).equalTo("result", 1).count();
         long totalCount = realm.where(Game.class).equalTo("deleteCandidate", false).count();
         Game highrunGame = realm.where(Game.class).equalTo("deleteCandidate", false).findAllSorted("highrun", false).get(0);
 
         this.average.setText(String.format("%.3f", average));
-        this.winRate.setText(String.format("%d%%", winCount / totalCount * 100));
+        this.winRate.setText(String.format("%d%%", Math.round((float) winCount / (float) totalCount * 100f)));
         this.highrun.setText(String.valueOf(highrunGame.getHighrun()));
         this.totalGames.setText(String.format("%d games", totalCount));
-        this.totalWins.setText(String.format("%d games", winCount));
+        this.totalWins.setText(String.format("%d wins", winCount));
         this.highrunDate.setText(DATE_SIMPLE.format(new Date(highrunGame.getCreateTime())));
     }
 

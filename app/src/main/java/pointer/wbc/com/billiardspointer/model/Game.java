@@ -12,6 +12,12 @@ import io.realm.annotations.Ignore;
 public class Game extends RealmObject {
     @Ignore
     public final List<Byte> history = new ArrayList<>();
+    @Ignore
+    public static final int LOSE = 0;
+    @Ignore
+    public static final int WIN = 1;
+    @Ignore
+    public static final int NO_GAME = 2;
 
     private boolean deleteCandidate;
     private byte[] scores;
@@ -22,7 +28,7 @@ public class Game extends RealmObject {
     private int point;
     private int highrun;
     private float average;
-    private boolean won;
+    private int result;
 
     public Game() {
         createTime = System.currentTimeMillis();
@@ -92,14 +98,6 @@ public class Game extends RealmObject {
         this.average = average;
     }
 
-    public boolean isWon() {
-        return won;
-    }
-
-    public void setWon(boolean won) {
-        this.won = won;
-    }
-
     public List<Byte> getHistory() {
         return history;
     }
@@ -110,5 +108,13 @@ public class Game extends RealmObject {
 
     public void setDeleteCandidate(boolean deleteCandidate) {
         this.deleteCandidate = deleteCandidate;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
     }
 }

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <pointer.wbc.com.billiardspointer.view.PrefixEditTextView
+    <pointer.wbc.com.billiardspointer.view.PrefixTextView
         android:id="@+id/history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
