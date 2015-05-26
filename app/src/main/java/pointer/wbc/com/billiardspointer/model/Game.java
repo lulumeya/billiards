@@ -13,9 +13,9 @@ public class Game extends RealmObject {
     @Ignore
     public final List<Byte> history = new ArrayList<>();
     @Ignore
-    public static final int LOSE = 0;
+    public static final int WIN = 0;
     @Ignore
-    public static final int WIN = 1;
+    public static final int LOSE = 1;
     @Ignore
     public static final int NO_GAME = 2;
 

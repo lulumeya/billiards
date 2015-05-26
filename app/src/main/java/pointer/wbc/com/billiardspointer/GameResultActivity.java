@@ -262,7 +262,7 @@ public class GameResultActivity extends BaseActivity implements View.OnClickList
 
                 ShareCompat.IntentBuilder.from(this)
                         .setText(gameToString(game))
-                        .setType("plain/text")
+                        .setType("text/plain")
                         .setChooserTitle("공유할 앱을 선택하세요.")
                         .setSubject(SHORT_FORMAT.format(new Date()) + " 게임결과")
                         .startChooser();
