@@ -5,6 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/dark_bg_shape</item>
         <item name="windowBgColor">@color/dark_bg</item>
+        <item name="windowBgDrawable">@drawable/dark_bg</item>
         <item name="android:textViewStyle">@style/TextStyle</item>
         <item name="dividerColor">@color/divider</item>
 
@@ -23,6 +24,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/light_bg_shape</item>
         <item name="windowBgColor">@color/light_bg</item>
+        <item name="windowBgDrawable">@drawable/light_bg</item>
         <item name="android:textViewStyle">@style/TextStyle.Light</item>
         <item name="dividerColor">@color/light_divider</item>
 
