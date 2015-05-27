@@ -63,23 +63,31 @@
         android:layout_marginRight="20dp"
         android:background="?attr/dividerColor" />
 
-    <pointer.wbc.com.billiardspointer.view.FontEditText
-        android:id="@+id/history"
+    <ScrollView
+        android:id="@+id/history_scroller"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="left"
         android:layout_marginLeft="15dp"
-        android:layout_weight="1"
-        android:background="?attr/windowBgDrawable"
-        android:focusable="false"
-        android:gravity="top|left"
-        android:lineSpacingExtra="3dp"
-        android:paddingBottom="10dp"
-        android:paddingTop="25dp"
-        android:singleLine="false"
-        android:textColor="?attr/primary_color"
-        android:textSize="27sp"
-        tools:text="01002 00110 10040 00001" />
+        android:layout_weight="1">
+
+        <pointer.wbc.com.billiardspointer.view.FontEditText
+            android:id="@+id/history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/windowBgDrawable"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:lineSpacingExtra="3dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:singleLine="false"
+            android:textColor="?attr/primary_color"
+            android:textSize="27sp"
+            tools:text="01002 00110 10040 00001" />
+    </ScrollView>
 
     <View
         android:layout_width="match_parent"

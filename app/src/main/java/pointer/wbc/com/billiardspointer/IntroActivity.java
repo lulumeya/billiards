@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -144,6 +145,16 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
             }
             getUserInfo();
         }
+    }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        if (drawerLayout.isDrawerOpen(Gravity.START)) {
+            drawerLayout.closeDrawer(Gravity.START);
+        } else {
+            drawerLayout.openDrawer(Gravity.START);
+        }
+        return super.onMenuOpened(featureId, menu);
     }
 
     private void getUserInfo() {

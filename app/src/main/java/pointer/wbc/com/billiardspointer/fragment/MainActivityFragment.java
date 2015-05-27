@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -34,7 +36,7 @@ import pointer.wbc.com.billiardspointer.view.PrefixTextView;
 
 public class MainActivityFragment extends BaseFragment implements View.OnClickListener {
 
-    Game game;
+    private Game game = new Game();
 
     @InjectView(R.id.history)
     TextView history;
@@ -53,7 +55,38 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
     private static final String[] numbers = new String[30];
     @InjectView(R.id.btn_exit)
     net.kianoni.fontloader.TextView btnExit;
+    @InjectView(R.id.history_scroller)
+    ScrollView historyScroller;
+    @InjectView(R.id.btn_point5)
+    net.kianoni.fontloader.TextView btnPoint5;
+    @InjectView(R.id.btn_point_more)
+    ImageView btnPointMore;
+    @InjectView(R.id.btn_point_back)
+    ImageView btnPointBack;
+    @InjectView(R.id.btn_point2)
+    net.kianoni.fontloader.TextView btnPoint2;
+    @InjectView(R.id.btn_point3)
+    net.kianoni.fontloader.TextView btnPoint3;
+    @InjectView(R.id.btn_point4)
+    net.kianoni.fontloader.TextView btnPoint4;
+    @InjectView(R.id.btn_point0)
+    net.kianoni.fontloader.TextView btnPoint0;
+    @InjectView(R.id.btn_point1)
+    net.kianoni.fontloader.TextView btnPoint1;
     private Dialog gridDialog;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null && savedInstanceState.containsKey("currentHistory")) {
+            byte[] currentHistories = savedInstanceState.getByteArray("currentHistory");
+            game.history.clear();
+            for (byte currentHistory : currentHistories) {
+                game.history.add(currentHistory);
+            }
+            applyHistory();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,15 +104,22 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
         for (View button : buttons) {
             button.setOnClickListener(pointListener);
         }
-
-        reset();
-
+        applyHistory();
         return view;
     }
 
-    private void reset() {
-        game = new Game();
-        applyHistory();
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        if (game.history.size() > 0) {
+            byte[] data = new byte[game.history.size()];
+            int i = 0;
+            for (Byte aByte : game.history) {
+                data[i] = aByte;
+                i++;
+            }
+            outState.putByteArray("currentHistory", data);
+        }
+        super.onSaveInstanceState(outState);
     }
 
     private View.OnClickListener pointListener = new View.OnClickListener() {
@@ -210,6 +250,9 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
     private final SpannableStringBuilder builder = new SpannableStringBuilder();
 
     private void applyHistory() {
+        if (this.history == null) {
+            return;
+        }
         int sum = processHistory(this.history, 20);
         if (game.history.size() > 0) {
             float average = (float) sum / (float) game.history.size();
@@ -259,6 +302,7 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
             index++;
         }
         history.setText(builder);
+        historyScroller.post(() -> historyScroller.smoothScrollTo(0, history.getHeight()));
         game.setHighrun(highrun);
         return sum;
     }
@@ -347,7 +391,10 @@ public class MainActivityFragment extends BaseFragment implements View.OnClickLi
                 }
                 new AlertDialog.Builder(context)
                         .setMessage(getString(R.string.init_question))
-                        .setPositiveButton(getString(R.string.init), (dialog1, which) -> reset())
+                        .setPositiveButton(getString(R.string.init), (dialog1, which) -> {
+                            game = new Game();
+                            applyHistory();
+                        })
                         .setNegativeButton(getString(R.string.action_cancel), null)
                         .show();
                 break;
