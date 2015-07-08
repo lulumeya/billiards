@@ -8,11 +8,8 @@ import android.os.Handler;
 import com.kakao.AuthType;
 import com.kakao.Session;
 import com.kakao.UserProfile;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
-import io.realm.Realm;
-import io.realm.exceptions.RealmMigrationNeededException;
-import pointer.wbc.com.billiardspointer.log.Logger;
-import pointer.wbc.com.billiardspointer.model.Migration;
 import pointer.wbc.com.billiardspointer.preference.Pref;
 
 /**
@@ -33,14 +30,7 @@ public class App extends Application {
         isDebuggable = (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
         Session.initialize(this, AuthType.KAKAO_TALK);
 
-        // If you try to open a file that doesn't match your model an exception is thrown:
-        try {
-            // should throw as migration is required
-            Realm.getInstance(this);
-        } catch (RealmMigrationNeededException ex) {
-            Logger.i("realm migration execute");
-            Realm.migrateRealmAtPath(getFilesDir() + "/" + Realm.DEFAULT_REALM_NAME, new Migration());
-        }
+        FlowManager.init(this);
     }
 
     @Override

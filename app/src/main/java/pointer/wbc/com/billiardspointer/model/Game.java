@@ -1,34 +1,49 @@
 package pointer.wbc.com.billiardspointer.model;
 
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
 
 /**
  * Created by Haksu on 2015-05-17.
  */
-public class Game extends RealmObject {
-    @Ignore
+@Table(databaseName = Db.NAME)
+public class Game extends BaseModel {
     public final List<Byte> history = new ArrayList<>();
-    @Ignore
     public static final int WIN = 0;
-    @Ignore
     public static final int LOSE = 1;
-    @Ignore
     public static final int NO_GAME = 2;
 
+    @Column
+    @PrimaryKey
+    private long id;
+    @Column
     private boolean deleteCandidate;
+    @Column
     private byte[] scores;
+    @Column
     private long createTime;
+    @Column
     private long lastScoreTime;
+    @Column
     private String name = "";
+    @Column
     private int inning;
+    @Column
     private int point;
+    @Column
     private int highrun;
+    @Column
     private float average;
+    @Column
     private int result;
+
+    @Column
+    private int hit;
 
     public Game() {
         createTime = System.currentTimeMillis();
@@ -116,5 +131,13 @@ public class Game extends RealmObject {
 
     public void setResult(int result) {
         this.result = result;
+    }
+
+    public int getHit() {
+        return hit;
+    }
+
+    public void setHit(int hit) {
+        this.hit = hit;
     }
 }

@@ -1,6 +1,8 @@
 package pointer.wbc.com.billiardspointer;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
@@ -18,6 +20,9 @@ import com.kakao.UserProfile;
 import com.kakao.exception.KakaoException;
 import com.kakao.widget.LoginButton;
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.raizlabs.android.dbflow.config.FlowManager;
+import com.raizlabs.android.dbflow.sql.builder.Condition;
+import com.raizlabs.android.dbflow.sql.language.Select;
 
 import net.kianoni.fontloader.TextView;
 
@@ -26,7 +31,6 @@ import java.util.Date;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import io.realm.Realm;
 import pointer.wbc.com.billiardspointer.model.Game;
 import pointer.wbc.com.billiardspointer.preference.Pref;
 import pointer.wbc.com.billiardspointer.util.Navigator;
@@ -103,8 +107,7 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void applyGameStatistics() {
-        Realm realm = Realm.getInstance(context);
-        if (realm.where(Game.class).equalTo("deleteCandidate", false).findAll().size() == 0) {
+        if (new Select().from(Game.class).where(Condition.column("deleteCandidate").eq(false)).count() == 0) {
             this.average.setText(getString(R.string.not_avail));
             this.winRate.setText(getString(R.string.not_avail));
             this.highrun.setText(getString(R.string.not_avail));
@@ -113,10 +116,35 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
             this.highrunDate.setText(getString(R.string.blank));
             return;
         }
-        double average = realm.where(Game.class).equalTo("deleteCandidate", false).averageFloat("average");
-        long winCount = realm.where(Game.class).equalTo("deleteCandidate", false).equalTo("result", 1).count();
-        long totalCount = realm.where(Game.class).equalTo("deleteCandidate", false).count();
-        Game highrunGame = realm.where(Game.class).equalTo("deleteCandidate", false).findAllSorted("highrun", false).get(0);
+        SQLiteDatabase db = FlowManager.getDatabaseForTable(Game.class).getWritableDatabase();
+
+        int totalHit = 0;
+        int totalPoint = 0;
+        Cursor cursor = db.rawQuery("SELECT SUM(hit) WHERE deleteCandidate=false", null);
+        if (cursor.getCount() > 0) {
+            totalHit = cursor.getInt(0);
+        }
+        cursor.close();
+
+        cursor = db.rawQuery("SELECT SUM(point) WHERE deleteCandidate=false", null);
+        if (cursor.getCount() > 0) {
+            totalPoint = cursor.getInt(0);
+        }
+        cursor.close();
+        double average = totalPoint / totalHit;
+
+        long winCount = new Select().from(Game.class).where(
+                Condition.column("deleteCandidate").eq(false),
+                Condition.column("result").eq(1))
+                .count();
+        long totalCount = new Select().from(Game.class).where(
+                Condition.column("deleteCandidate").eq(false))
+                .count();
+        Game highrunGame = new Select().from(Game.class)
+                .where(Condition.column("deleteCandidate").eq(false))
+                .orderBy("highrun desc")
+                .limit(1)
+                .queryList().get(0);
 
         this.average.setText(String.format("%.3f", average));
         this.winRate.setText(String.format("%d%%", Math.round((float) winCount / (float) totalCount * 100f)));
