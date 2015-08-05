@@ -18,7 +18,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:padding="10dp"
-            android:src="?attr/list_button" />
+            android:src="?attr/list_button"
+            android:visibility="gone"/>
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/profile_image"
@@ -54,7 +55,8 @@
             android:text="(no club)"
             android:textColor="?attr/primary_color"
             android:textSize="13sp"
-            app:fontFile="@string/roboto_regular" />
+            app:fontFile="@string/roboto_regular"
+            android:visibility="invisible" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -177,16 +179,18 @@
                     android:text="1P"
                     android:textColor="?attr/primary_color"
                     android:textSize="34sp"
-                    app:fontFile="@string/roboto_bold" />
+                    app:fontFile="@string/roboto_bold"
+                    android:visibility="gone"/>
 
                 <net.kianoni.fontloader.TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:paddingTop="25dp"
                     android:paddingBottom="25dp"
                     android:text="S T A R T"
                     android:textColor="?attr/primary_color"
-                    android:textSize="12sp"
+                    android:textSize="34sp"
                     app:fontFile="@string/roboto_bold" />
 
             </LinearLayout>
@@ -197,7 +201,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?attr/windowBgSelector"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <net.kianoni.fontloader.TextView
                     android:layout_width="match_parent"
