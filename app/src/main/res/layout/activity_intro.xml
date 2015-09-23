@@ -196,23 +196,25 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/btn_play_2p"
+                android:id="@+id/go_list"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?attr/windowBgSelector"
                 android:orientation="vertical"
-                android:visibility="gone">
+                >
 
                 <net.kianoni.fontloader.TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingTop="30dp"
-                    android:text="2P"
+                    android:paddingTop="25dp"
+                    android:paddingBottom="25dp"
+                    android:text="Game List"
                     android:textColor="?attr/primary_color"
                     android:textSize="34sp"
-                    app:fontFile="@string/roboto_bold" />
+                    app:fontFile="@string/roboto_bold"
+                    />
 
                 <net.kianoni.fontloader.TextView
                     android:layout_width="match_parent"
@@ -222,6 +224,7 @@
                     android:text="S T A R T"
                     android:textColor="?attr/primary_color"
                     android:textSize="12sp"
+                    android:visibility="gone"
                     app:fontFile="@string/roboto_bold" />
 
             </LinearLayout>
@@ -229,7 +232,6 @@
         </LinearLayout>
 
     </RelativeLayout>
-    <!-- The navigation drawer -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -248,10 +250,11 @@
             android:text="테마 변경"
             android:textColor="?attr/primary_color"
             android:textSize="15sp"
+            android:visibility="gone"
             app:fontFile="@string/roboto_bold" />
 
         <net.kianoni.fontloader.TextView
-            android:id="@+id/go_list"
+            android:id="@+id/btn_play_2p"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/ripple_menu"
@@ -259,7 +262,8 @@
             android:text="게임 목록"
             android:textColor="?attr/primary_color"
             android:textSize="15sp"
-            app:fontFile="@string/roboto_bold" />
+            app:fontFile="@string/roboto_bold"
+            android:visibility="gone"/>
 
         <com.kakao.widget.LoginButton
             android:id="@+id/com_kakao_login"

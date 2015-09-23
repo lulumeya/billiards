@@ -52,7 +52,9 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
     @InjectView(R.id.btn_play_1p)
     LinearLayout btnPlay1p;
     @InjectView(R.id.btn_play_2p)
-    LinearLayout btnPlay2p;
+    TextView btnPlay2p;
+    @InjectView(R.id.go_list)
+    LinearLayout goList;
     @InjectView(R.id.average)
     TextView average;
     @InjectView(R.id.win_rate)
@@ -67,8 +69,7 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
     TextView highrunDate;
     @InjectView(R.id.btn_theme)
     TextView btnTheme;
-    @InjectView(R.id.go_list)
-    TextView goList;
+
     private Session session;
 
     @Override
